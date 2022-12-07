@@ -1,0 +1,35 @@
+{% extends 'AppUsers/static/AppUsers/loginBase.html' %}
+
+{% load static %}
+
+{% block ContenidoDinamico1 %}
+
+<div class="container mt-5">
+    <div class="titulo">
+        <h5>Modifica los campos que te sean necesarios</h5>
+        <p></p>
+        <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 50%"/>
+    </div>
+
+    <h6 class="text-wordwrap">(El cambio de contraseña es opcional)</h6>
+    <hr></hr>
+
+        <form  method="post" class="form-group mb-5" style="text-align: justify">
+
+            {% csrf_token %}
+
+            <table class="table">
+
+            {{edituserform.as_p}}
+            {{aboutuserform.as_p}}
+
+            </table>
+
+            <p></p>
+            <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            <a class="btn btn-primary" href="{% url 'AppUsers:Profile' %}">Cancelar</a>
+        </form>
+</div>
+
+
+{% endblock %}

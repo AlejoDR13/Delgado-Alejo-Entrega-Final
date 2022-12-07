@@ -1,0 +1,136 @@
+{% extends 'AppBlog/templates/AppBlog/base2.html' %}
+{% load static %}
+<!--Inicio- Aquí tenemos la herencia del template base -------------------------------------------------> 
+
+<!--Fin- Aquí tenemos la herencia del template base ----------------------------------------------------> 
+<!--Carga de los estilos, entre otros archivos estaticos ----------------------------------------------->
+
+
+<!--Inicio- de parte dinamica -------------------------------------------------------------------------->
+{% block ContenidoDinamico1%}
+
+<header class="py-5 bg-image-full" style="background-image: url('https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d')">
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 15%"/>
+
+<h1 class="text-white fs-1 fw-bolder">Galeria de Posts</h1>
+<p class="text-white-50 mb-0">Aqui encontraras los posts de los usuarios dando sus </p>
+<p class="text-white-50 mb-0">recomendaciones, reseñas, informacion de peliculas en general</p>
+</div>
+</header>
+<p>
+</p>
+
+{% endblock %}
+
+
+{% block ContenidoDinamico3 %}
+        <div class="container-xxl">
+              <!-- Search widget-->
+              <div class="card mb-4">
+                <div class="card-header">Buscador</div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                      
+                        <p>
+                            <form action="/showing/" method="GET">
+                                
+                                <input type="text" name='titulo' style="border: rounded;" placeholder="Buscar en PeliBlog">
+    
+                            
+                                <input type="submit" value="Buscar"> 
+                            </form>
+                            
+                        </p>
+                        
+                    </ul>
+                </div>
+            </div>
+    
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-6">
+            {% for film in object_list %}
+            <div class="col">
+              <div class="card shadow-sm">
+                <a href="#" class="thumbnail" >
+                          <image src="{{ film.Primer_imagen.url }}" class="img-fluid img-thumbnail">
+                </a>              
+    
+                <div class="card-body">
+                  <h4>{{ film.titulo }}</h4>  
+                  <h4>{{ film.duracion_en_min|date:"c" }}</h4> 
+                  <p class="card-text">
+                  <div class="text-muted fst-italic mb-2">Por: <a href="{% url 'AppUsers:OpenProfile' film.usuario_post %}">{{film.usuario_post}} </a></div>
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'AppBlog:DetallePelicula' film.titulo %}" >
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                      </a>  
+                      {%if request.user == post.owner or request.user.is_superuser%}
+                      <a href="{% url 'AppBlog:UpdatePelicula' film.titulo %}" >
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                      </a>                     
+                      <a href="{% url 'AppBlog:DeletePelicula' film.titulo %}" >
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
+                      </a>
+                      {%endif%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+                    <h1>No hay posts aún.</h1>
+            {% endfor %}
+          </div>
+        </div>
+
+
+{% endblock %}
+
+{% block ContenidoBody %}
+
+<br>
+<div>
+  <nav aria-label="Pagination">
+
+    <ul class="pagination justify-content-center my-4">
+      Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}  
+    </ul>
+  </nav>
+</div>
+
+<nav aria-label="Pagination">
+  <hr class="my-0" />
+  <ul class="pagination justify-content-center my-4">
+    
+    <ul style="margin-left: 10px;" class="pagination">
+      
+    {% if page_obj.has_previous %}
+    <li><a href="?page=1">
+      <button type="button" class="btn btn-sm btn-outline-secondary"><h6>«Primera</h6></button>
+    </a></li>
+    <li><a href="?page={{ page_obj.previous_page_number }}">
+      <button type="button" class="btn btn-sm btn-outline-secondary"><h6>«</h6></button>
+    </a></li>
+    {% endif %}
+
+    {%if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number}}">
+      <button type="button" class="btn btn-sm btn-outline-secondary"><h6>»</h6></button>
+    </a></li>
+    <li><a href="?page={{ page_obj.paginator.num_pages}}">
+      <button type="button" class="btn btn-sm btn-outline-secondary"><h6>Ultima»</h6></button>
+    </a></li>
+
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}
+
+
+{% block BotonVolver %}
+<a class="btn btn-primary" href="{% url 'AppBlog:Inicio' %}">◄ Inicio</a>
+</div>
+</div>
+{% endblock  %}

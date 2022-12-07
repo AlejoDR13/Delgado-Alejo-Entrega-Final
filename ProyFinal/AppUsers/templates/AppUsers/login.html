@@ -1,0 +1,37 @@
+{% extends 'AppUsers/static/AppUsers/loginBase.html' %}
+
+{% load static %}
+
+{% block ContenidoDinamico1 %}
+
+<div class="titulo">
+    Bienvenido
+    <p></p>
+    <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 50%"/>
+</div>
+
+<form  method="post" class="form-group" style="text-align: center">
+
+    {% csrf_token %}
+
+    <table class="table">
+
+    {{loginform.as_p}}
+
+    </table>
+
+    {% if errors %}
+        {% for error in errors %}
+        <p style="color: red; text-align: center;" t>{{error}}</p>
+        {% endfor %}
+    {% endif %}
+    <p></p>
+    <input type="submit" value="Ingresar" class="btn btn-primary">
+
+    <p style="color: black">Si no posees una cuenta, regístrate!</p>
+
+    <a class="btn btn-primary" href="{% url 'AppUsers:Register' %}">Crear cuenta</a>
+
+</form>
+
+{% endblock %}

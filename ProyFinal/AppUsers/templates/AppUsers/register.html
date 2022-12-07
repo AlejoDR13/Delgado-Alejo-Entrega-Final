@@ -1,0 +1,38 @@
+{% extends 'AppUsers/static/AppUsers/loginBase.html' %}
+
+{% load static %}
+
+{% block ContenidoDinamico1 %}
+
+<div class="titulo">
+    Bienvenido
+    <p></p>
+    <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 50%"/>
+</div>
+<div class="titulo">
+    <h5>Ingresa tus datos</h5>
+</div>
+<div class="container mt-5">
+
+    <form  method="post" class="form-group">
+
+        {% csrf_token %}
+
+        <table class="table">
+
+        {{registerform.as_p}}
+
+        </table>
+
+        {% if errors %}
+            {% for error in errors %}
+            <div class="container mt-1 style= text-red">{{error}}</div>
+            {% endfor %}
+        {% endif %}
+        <p></p>
+        <input type="submit" value="Crear cuenta" class="btn btn-primary">
+
+    </form>
+</div>
+
+{% endblock %}

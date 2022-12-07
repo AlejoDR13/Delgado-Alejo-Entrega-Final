@@ -1,0 +1,63 @@
+{% extends 'AppBlog/templates/AppBlog/base2.html' %}
+
+{%load static %}
+
+{% block ContenidoDinamico1%}
+
+<header class="py-5 bg-image-full" style="background-image: url('https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d')">
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 15%"/>
+
+<h1 class="text-white fs-1 fw-bolder">Resultados de tu busqueda</h1>
+<p class="text-white-50 mb-0">Aqui encontraras los posts de los usuarios dando sus </p>
+<p class="text-white-50 mb-0">recomendaciones, reseñas, informacion de peliculas en general</p>
+</div>
+</header>
+<p>
+</p>
+
+{% endblock %}
+
+{% block ContenidoDinamico2 %}
+
+<p></p>
+
+{% if error %}
+
+<div class="alert alert-danger">{{error}}</div>
+<a href="ERROR" class="btn btn-link"></a>
+
+{% endif %}
+
+    {% if data %}
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog data-->
+                <div class="card mb-4">
+                    {% if data.Primer_imagen %}
+                    <a href="{{data.titulo}}">
+                        <img class="card-img-top" src="{{data.Primer_imagen.url}}" alt="..." />
+                    </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="small text-muted">{{data.fecha}}</div>
+                        <h2 class="card-title">{{data.titulo}}</h2>
+                        <p class="card-text">{{data.autor_post}}</p>
+                        <a class="btn btn-primary" href="{% url 'AppBlog:DetallePelicula' data.titulo %}">Ir al Post →</a>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block BotonVolver %}
+<a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">◄ Ir a la galeria</a>
+</div>
+</div>
+{% endblock  %}

@@ -1,0 +1,97 @@
+{% extends 'AppBlog/templates/AppBlog/base2.html' %}
+
+{% load static %}
+
+
+{% block ContenidoDinamico1%}
+<header class="py-5 bg-image-full" style="background-image: url(https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d)">
+    <div class="text-center my-5">
+        {%if request.user.is_authenticated%}
+
+            
+            <img id="img" class="img rounded-circle" alt="Perfil" height="150" width="150" src="{{img}}"></img>
+   
+        </a>
+        {%endif%}
+        
+        <h1 class="text-white fs-1 fw-bolder">Perfil de usuario</h1>
+        <p class="text-white-50 mb-0">En este apartado encontraras los datos de cuenta</p>
+    </div>
+</header>
+<p>
+</p>
+
+{% endblock %}
+
+
+
+{% block ContenidoDinamico2 %}
+
+<div class="container-fluid mb-5">
+    <p></p>
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="container-fluid mb-5">
+                <div class="row">
+                    <div class="row">    
+                        {% if request.user.is_superuser %}
+                        <div class="cl-sm-2">
+                            <div class="user-image-container mb-2">
+                                <div style="text-align: left;">
+                                    <a class="btn btn-primary btn-sm" href="{% url 'AppUsers:addAvatar' %}">Actualizar imagen</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <div class="col-sm-8 d-flex align-items-center"> 
+                            <div class="about-me">                    
+                                <div class="d-flex justify-content-start align-items-center"> 
+
+                                    {%if user.first_name and user.last_name%}
+                                    <h2><strong>{{user.first_name}} {{user.last_name}}</strong></h2>
+                                    {%else%}
+                                    <h2><strong>Nombre/s Apellido/s</strong></h2>
+                                    {%endif%}
+                                    <p></p>
+                                    <div style="text-align: left;">
+                                        {% if request.user.username == user.username %}
+                                        <a class="btn btn-primary btn-sm" href="{% url 'AppUsers:EditarPerfil' %}">Editar</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="text-muted mb-3">{{user.username}} | {{user.email}}</div>
+                            </div>
+                        </div>
+
+                        <div id="description" class="container-fluid mb-5">
+                            <p>{{bio}}<p>
+                            <hr></hr>
+                            <table style="width: 18%;">
+
+                                {%if instagram%}
+                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsers/assets/instagram.ico' %}"></img></a></th>
+                                {%endif%}
+                                {%if facebook%}
+                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsers/assets/facebook.ico' %}"></img></a></th>
+                                {%endif%}
+                                {%if twitter%}
+                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsers/assets/twitter.ico' %}"></img></a></th>
+                                {%endif%}
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block BotonVolver %}
+<a class="btn btn-primary" href="{% url 'AppBlog:Inicio' %}">◄ Inicio</a>
+</div>
+</div>
+{% endblock  %}

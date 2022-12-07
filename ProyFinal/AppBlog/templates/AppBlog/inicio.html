@@ -1,0 +1,91 @@
+{% extends 'AppBlog/templates/AppBlog/base1.html' %}
+
+{%load static %}
+
+{% block ContenidoDinamico1%}
+<header class="py-5 bg-image-full" style="background-image: url(https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d)">
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 15%"/>
+        <h1 class="text-white fs-1 fw-bolder">Blog de Peliculas</h1>
+        <p class="text-white-50 mb-0">Recomendaciones, reseñas, informacion de peliculas en general</p>
+    </div>
+</header>
+<p>
+</p>
+
+{% endblock %}
+
+
+{% block ContenidoDinamico2%}
+<div class="card mb-4">                         
+    <div class="card-body">
+        <a href="#!"><img class="card-img-top" src="https://d500.epimg.net/cincodias/imagenes/2020/12/31/lifestyle/1609408585_467254_1609408795_noticia_normal_recorte1.jpg" alt="..." /></a>
+        <div class="small text-muted">10 de Noviembre, 2022</div>
+        <h2 class="card-title">¡Busca y encontra!</h2>
+        <p class="card-text">En este blog encontraras recomendaciones, comentarios, reseñas, puntuacion e informacion de la comunidad sobre peliculas en general.</p>
+        <a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">Ver mas →</a>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block ContenidoDinamico3%}
+
+{% endblock  %}
+
+{% block ContenidoDinamico5%}
+<div class="card mb-4">
+    <div class="card-header">Buscador</div>
+    <div class="card-body">
+        <ul class="list-unstyled mb-0">
+            <p>
+                <form action="showing/" method="GET">
+                    
+                    <input type="text" name='titulo' style="border: rounded;" placeholder="Buscar en PeliBlog">
+                
+                    <input type="submit" value="Buscar">
+                </form>
+            </p>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block ContenidoDinamico6%}
+<!--  ACA IRIAN LAS TARJETAS CON ALGUNOS POSTS DE PELICULAS  -->
+{% endblock %}
+
+{% block ContenidoWidgets %}
+
+<div class="card mb-4">
+    <div class="card-header">Generos</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Terror</a></li>
+                    <li><a href="#">Aventura</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                    <li><a href="#">Ciencia Ficcion</a></li>
+                    <li><a href="#">Thriller</a></li>
+                    <li><a href="#">Suspenso</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block ContenidoDinamico7 %}
+<div class="card mb-4">
+    <div class="card-header">A tener en cuenta</div>
+    <div class="card-body">Deberas considerar que en el blog, la cantidad de peliculas que se encuentran son añadidas por los mismos usuarios. Donde todos somos parte del aporte en cuanto a contenido se trate.</div>
+</div>
+{% endblock %}

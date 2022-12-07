@@ -1,0 +1,18 @@
+{% extends 'AppBlog/templates/AppBlog/base2.html' %}
+
+{% load static %}
+
+{% block ContenidoBody %}
+
+<form method="post"> {% csrf_token %}
+    Estas seguro que desas eliminar el curso {{object}}?
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}
+
+{% block BotonVolver %}
+<a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">◄ Ir a la galeria</a>
+</div>
+</div>
+{% endblock  %}
