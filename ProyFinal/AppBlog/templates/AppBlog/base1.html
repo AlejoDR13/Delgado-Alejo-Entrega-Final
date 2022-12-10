@@ -10,7 +10,7 @@
         <meta name="author" content="" />
         <title>Blog de Peliculas</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="{% static 'AppBlog/assets/playicon.ico'%}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'AppBlog/css/styles.css' %}" rel="stylesheet" />
     </head>
@@ -102,7 +102,19 @@
                 </div>
             </div>
         </div>
+        <div class="card mb-4">                        
+            <div class="card-body">
+    
+                    {% block ContenidoBody %}
+                    
+                    {% endblock  %}
+                    <p>
+                    </p>               
+                    {% block BotonVolver %}
 
+                    {% endblock  %}
+            </div>
+        </div>
         <!-- PIE DE PAGINA/FIJO-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; PeliBlog 2022</p></div>

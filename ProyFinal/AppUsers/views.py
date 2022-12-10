@@ -68,7 +68,7 @@ def register_request(request):
         else:
 
             registerform= UserRegister_form()
-            return render(request, 'AppUsers/templates/AppUsers/register.html', {"registerform": registerform, "errors": ['Datos de registro inválidos.']})
+            return render(request, 'AppUsers/templates/AppUsers/register.html', {"registerform": registerform, "errors": ['Datos de registro inválidos. Posiblemente el username o el email ya estan en uso, prueba nuevamente']})
 
     else:
 
@@ -282,3 +282,4 @@ def open_user_profile(request, usuario):
         img = None
 
     return render(request, 'AppUsers/templates/AppUsers/profile.html', {'img': img, 'user': user, 'imgprofile': imgprofile, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
+

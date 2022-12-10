@@ -81,7 +81,7 @@
                                                         <form method="POST" action="{% url "AppBlog:like" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-blue-500"> 
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value={{request.path}}>
-                                                            <button type="submit" class='bx bxs-like'></button>
+                                                            
                                                         </form>
                                                       
                                                       </div>
@@ -92,7 +92,7 @@
                                                         <form method="POST" action="{% url "AppBlog:dislike" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-red-500"> 
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value={{request.path}}>
-                                                            <button type="submit" class='bx bxs-dislike'></button>
+                                                            
                                                         </form>
                                                       
                                                       </div>
@@ -127,10 +127,6 @@
                                                                     <p class="text-sm font-semibold">Dislike</p>
                                                                 </button>
                                                             </form>
-                                                            
-
-
-
 
                                                 <!-- END POST REACT -->
                                             </div>

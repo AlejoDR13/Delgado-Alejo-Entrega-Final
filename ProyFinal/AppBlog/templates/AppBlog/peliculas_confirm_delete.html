@@ -17,7 +17,7 @@
 {% block ContenidoBody %}
 
 <form method="post"> {% csrf_token %}
-    ¿Estas seguro que desas eliminar "{{object}}"?
+    <div class="alert alert-danger">¿Estas seguro que desas eliminar "{{object}}"?</div>
     <input type="submit" value="Eliminar">
 </form>
 

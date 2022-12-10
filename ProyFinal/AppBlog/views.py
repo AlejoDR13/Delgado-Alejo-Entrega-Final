@@ -22,7 +22,6 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 
 from django.contrib.auth import get_user
-
 #------------------------------------------------------------------------------------------------------
 def inicio(request):
     return render(request, 'AppBlog/templates/AppBlog/inicio.html')
@@ -51,48 +50,6 @@ def searchpost(request):
 
     return render(request, 'AppBlog/showing.html', {"error": error, 'img': img})
 
-def ver_post(request, titulo):
-
-        readPost = Peliculas.objects.get(titulo=titulo)
-
-        try:
-            commentsPost = Comment.objects.filter(post=titulo)
-
-            if request.user.username:
-
-                avatar = Avatar.objects.filter(user=request.user)
-
-                if len(avatar) > 0:
-
-                    img = avatar[0].imagen.url
-                
-                else:
-
-                    img= None
-        
-            else:
-
-                img = None
-
-        except:
-
-            commentsPost = None
-
-            if request.user.username:
-
-                avatar = Avatar.objects.filter(user=request.user)
-
-                if len(avatar) > 0:
-
-                    img = avatar[0].imagen.url
-
-                else:
-                    img=None
-            else:
-                img=None
-
-        return render(request, 'AppBlog/templates/AppBlog/post.html', {'post': readPost, 'img': img, 'comentarios': commentsPost})
-
 class PeliculaCreateView(LoginRequiredMixin, CreateView):
      model = Peliculas
      template_name = "AppBlog/templates/AppBlog/crearpelicula.html"
@@ -111,7 +68,6 @@ class PeliculasListView(ListView):
     paginate_by = 9  # if pagination is desiredcd
     fields= "__all__"
 
-
 class PeliculaDetailView(DetailView):
 
     model = Peliculas
@@ -120,13 +76,6 @@ class PeliculaDetailView(DetailView):
 
 class PeliculaUpdateView(UpdateView):
     model = Peliculas
-
-    # Recordatorio, en success_url utilzar el nombre de la url
-    # Ejemplo:
-    # path('cursos_list/', views.CursoList.as_view(), name='List'),
-    # en este caso, utilizar el string del primer parametro
-    # antecedido de una slash
-
     success_url = reverse_lazy('AppBlog:ListaPelicula')
     fields = ['usuario_post',
     'autor',
@@ -140,14 +89,7 @@ class PeliculaUpdateView(UpdateView):
     'Primer_imagen',
     'Segunda_imagen',]
 
-
 class PeliculaDeleteView(DeleteView):
-
-    # Recordatorio, en success_url utilzar el nombre de la url
-    # Ejemplo:
-    # path('cursos_list/', views.CursoList.as_view(), name='List'),
-    # en este caso, utilizar el string del primer parametro
-    # antecedido de una slash
     model = Peliculas
     success_url = reverse_lazy('AppBlog:ListaPelicula')
 
@@ -226,12 +168,12 @@ class AddLike(LoginRequiredMixin, View):
         return HttpResponseRedirect(next)
     login_url = reverse_lazy('AppUsers:Login')
         
-class AddDislike(LoginRequiredMixin,View):
+class AddDislike(LoginRequiredMixin, View):
     def post(self,request, pk, *args, **kwargs):
         post = Peliculas.objects.get(pk=pk)   
 
         is_like=False
-        for like in post.dislikes.all():
+        for like in post.likes.all():
             if like == request.user:
                 is_like = True
                 break
