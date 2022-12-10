@@ -13,16 +13,25 @@ class CrearPelicula_form(forms.ModelForm):
     class Meta:
         model=Peliculas
         fields='__all__'
-        exclude = ['usuario_post']
-        
+        exclude = ('usuario_post', 'dislikes','likes')
+
         widgets = {
                     
                     'estreno': DateTimeInput(attrs={'class': 'form-control'}),
 
                 }
 
-class LeaveComment_form(forms.Form):
 
-    usuario = forms.CharField(max_length=50)
-    body = forms.CharField(widget=forms.Textarea, label='Comentario')
-    post = forms.CharField(max_length=40, label='Post comentado')
+#class LeaveComment_form(forms.ModelForm):
+#    comment = forms.CharField(
+#        widget=forms.Textarea(attrs={
+#            'class': 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-dark-third dark:border-dark-third dark:text-dark-txt flex m',
+#            'rows': '1',
+#            'placeholder':'Deja un comentario...'
+#            }),
+#        required=True
+#        )
+#    
+#    class Meta:
+#        model=Comment
+#        fields=['comment']

@@ -9,15 +9,19 @@ from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.views import View
 #AppBlog FORMULARIOS
-from AppBlog.forms import CrearPelicula_form, LeaveComment_form
+from AppBlog.forms import CrearPelicula_form
 #AppBlog MODELOS
-from AppBlog.models import Peliculas, Comment
+from AppBlog.models import Peliculas
 #AppUser MODELOS
 from AppUsers.models import Avatar
 
 from django.urls import reverse_lazy
 
+from django.http import HttpResponseRedirect, HttpResponse
+
+#------------------------------------------------------------------------------------------------------
 def inicio(request):
     return render(request, 'AppBlog/templates/AppBlog/inicio.html')
 
@@ -94,13 +98,16 @@ class PeliculaCreateView(LoginRequiredMixin, CreateView):
      success_url = reverse_lazy('AppBlog:ListaPelicula')
      login_url = reverse_lazy('AppUsers:Login')
 
+
+
+
 class PeliculasListView(ListView):
 
     template_name = "AppBlog/templates/AppBlog/peliculaslistar.html"
 
     model = Peliculas
     queryset = Peliculas.objects.all()
-    paginate_by = 2  # if pagination is desiredcd
+    paginate_by = 9  # if pagination is desiredcd
     fields= "__all__"
 
 class PeliculaDetailView(DetailView):
@@ -174,3 +181,63 @@ def leavecomment(request, titulo):
         miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
 
     return render(request, 'AppBlog/leavecomment.html', {'miComment': miComment, 'img': img})
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+class AddLike(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        post = Peliculas.objects.get(pk=pk)
+
+        is_dislike=False
+        for dislike in post.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+        
+        if is_dislike:
+            post.dislikes.remove(request.user)
+
+        is_like=False
+        for like in post.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            post.likes.add(request.user)
+
+        if is_like:
+            post.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+    login_url = reverse_lazy('AppUsers:Login')
+        
+class AddDislike(LoginRequiredMixin,View):
+    def post(self,request, pk, *args, **kwargs):
+        post = Peliculas.objects.get(pk=pk)   
+
+        is_like=False
+        for like in post.dislikes.all():
+            if like == request.user:
+                is_like = True
+                break
+        
+        if is_like:
+            post.likes.remove(request.user)
+
+        is_dislike=False
+        for dislike in post.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if not is_dislike:
+            post.dislikes.add(request.user)
+
+        if is_dislike:
+            post.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+    login_url = reverse_lazy('AppUsers:Login')

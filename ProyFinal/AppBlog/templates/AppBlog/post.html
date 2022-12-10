@@ -71,29 +71,68 @@
                                 <div class="card-text">
                                     <ul class="list-unstyled mb-0">
                                             <div id="wrapper">
-                                                <form action="" method="POST" enctype="multipart/form-data">
-    
-                                                    {% csrf_token %}
-    
-                                                    <table class="table">
-            
-                                                        {{miPuntaje.as_table}}
-                                                    
-                                                        </table>
-                                                    <p class="clasificacion">
-                                                        <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                        --><label for="radio1">★</label><!--
-                                                        --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                        --><label for="radio2">★</label><!--
-                                                        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                        --><label for="radio3">★</label><!--
-                                                        --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                        --><label for="radio4">★</label><!--
-                                                        --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                                        --><label for="radio5">★</label>
-                                                        <input type="submit" value="Enviar" class="btn btn-primary" id="btn"
-                                                    </p>
-                                                </form>
+
+                                                <!-- POST REACT -->
+                                                <div class = "px-4 py-2">
+                                                    <div class = "flex items-center justify-between">
+                                                      <div class = "flex flex-row-reverse items-center">
+                                                  
+                                                        <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.likes.all.count}} Likes </span>
+                                                        <form method="POST" action="{% url "AppBlog:like" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-blue-500"> 
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value={{request.path}}>
+                                                            <button type="submit" class='bx bxs-like'></button>
+                                                        </form>
+                                                      
+                                                      </div>
+                                                  
+                                                      <div class = "flex flex-row-reverse items-center">
+                                                  
+                                                        <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.dislikes.all.count}} Dislikes </span>
+                                                        <form method="POST" action="{% url "AppBlog:dislike" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-red-500"> 
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value={{request.path}}>
+                                                            <button type="submit" class='bx bxs-dislike'></button>
+                                                        </form>
+                                                      
+                                                      </div>
+                                                  
+                                                      <div class="text-gray-500 dark:text-dark-txt">
+                                                      <!-- Comentms????-->
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                <!-- END POST REACT -->    
+                                                
+                                                
+                                                <!-- POST ACTION -->
+                                                <dic x-data={"open:false"} class="py-2 px-4">
+                                                    <div class="border border-gray-200 dark:border-dark-third border-1-0 border-r-0 py-1">
+                                                        <div class="flex space-x-2">
+
+                                                            <form method="POST" action="{% url 'AppBlog:like' peliculas.pk %}" class="mt-2 px-2">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="next" value="{{request.path}}">
+                                                                <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
+                                                                    <i class='bx bx-like'></i>
+                                                                    <p class="text-sm font-semibold">Like</p>
+                                                                </button>
+                                                            </form>
+
+                                                            <form method="POST" action="{% url 'AppBlog:dislike' peliculas.pk %}" class="mt-2 px-2">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="next" value="{{request.path}}">
+                                                                <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
+                                                                    <i class='bx bx-like'></i>
+                                                                    <p class="text-sm font-semibold">Dislike</p>
+                                                                </button>
+                                                            </form>
+                                                            
+
+
+
+
+                                                <!-- END POST REACT -->
                                             </div>
                                     </ul>
                                 </div>

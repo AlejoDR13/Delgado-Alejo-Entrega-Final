@@ -7,7 +7,6 @@
 <header class="py-5 bg-image-full" style="background-image: url(https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d)">
     <div class="text-center my-5">
         {%if request.user.is_authenticated%}
-
             
             <img id="img" class="img rounded-circle" alt="Perfil" height="150" width="150" src="{{img}}"></img>
    
@@ -34,7 +33,7 @@
             <div class="container-fluid mb-5">
                 <div class="row">
                     <div class="row">    
-                        {% if request.user.is_superuser %}
+                        {%if request.user.is_authenticated%}
                         <div class="cl-sm-2">
                             <div class="user-image-container mb-2">
                                 <div style="text-align: left;">

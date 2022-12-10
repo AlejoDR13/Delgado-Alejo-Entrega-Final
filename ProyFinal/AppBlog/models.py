@@ -25,15 +25,18 @@ class Peliculas(models.Model):
     Segundo_cuerpo = models.TextField(max_length=10**10, null=True, blank=True)
     Primer_imagen = models.ImageField(upload_to='posts', null=False, blank=True)
     Segunda_imagen = models.ImageField(upload_to='posts', null=True, blank=True)
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
     
     def __str__(self) -> str:
         return f'{self.titulo} | {self.usuario_post}'
 
-class Comment(models.Model):
-    usuario = models.CharField(max_length=50)
-    body = models.TextField()
-    fecha = models.DateTimeField(auto_now_add=True)
-    post = models.CharField(max_length=100)
-
-    def __str__(self) -> str:
-        return f'{self.usuario} | {self.post}'
+#class Comment(models.Model):
+#    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_comment_author')
+#    body = models.TextField()
+#    fecha = models.DateTimeField(auto_now_add=True)
+#    post = models.CharField(max_length=100)
+#    likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')
+#    dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')    
+#
+#    def __str__(self) -> str:+

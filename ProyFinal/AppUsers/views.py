@@ -35,7 +35,8 @@ def login_request(request):
 
                     img = None
 
-                return render(request, 'AppBlog/templates/AppBlog/inicio.html', {'user': usuario, 'img':img})
+                return redirect('AppBlog:Inicio')
+                #return render(request, 'AppBlog/templates/AppBlog/inicio.html', {'user': usuario, 'img':img})
 
             else:
                 return render(request, 'AppUsers/templates/AppUsers/login.html', {"errors": ['El usuario no existe.']})
