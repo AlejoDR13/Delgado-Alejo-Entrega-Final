@@ -12,7 +12,7 @@ class Generos(models.Model):
 class Peliculas(models.Model):
     #Datos del autor del POST
     usuario_post = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-    autor_post = models.CharField(max_length=40)
+    autor= models.CharField(max_length=40, blank=True, null=True)
     email = models.EmailField(max_length=40, blank=True, null=True)
     fecha = models.DateField(auto_now_add=True, null=True, blank=True)
     #Datos de la PELICULA (POST)

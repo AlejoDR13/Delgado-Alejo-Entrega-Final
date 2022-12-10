@@ -21,6 +21,8 @@ from django.urls import reverse_lazy
 
 from django.http import HttpResponseRedirect, HttpResponse
 
+from django.contrib.auth import get_user
+
 #------------------------------------------------------------------------------------------------------
 def inicio(request):
     return render(request, 'AppBlog/templates/AppBlog/inicio.html')
@@ -97,10 +99,9 @@ class PeliculaCreateView(LoginRequiredMixin, CreateView):
      form_class = CrearPelicula_form
      success_url = reverse_lazy('AppBlog:ListaPelicula')
      login_url = reverse_lazy('AppUsers:Login')
-
-
-
-
+     
+     def get_initial(self):
+        return {'usuario_post':self.request.user, 'email':self.request.user.email}
 class PeliculasListView(ListView):
 
     template_name = "AppBlog/templates/AppBlog/peliculaslistar.html"
@@ -109,6 +110,7 @@ class PeliculasListView(ListView):
     queryset = Peliculas.objects.all()
     paginate_by = 9  # if pagination is desiredcd
     fields= "__all__"
+
 
 class PeliculaDetailView(DetailView):
 
@@ -126,7 +128,18 @@ class PeliculaUpdateView(UpdateView):
     # antecedido de una slash
 
     success_url = reverse_lazy('AppBlog:ListaPelicula')
-    fields = ['titulo', 'duracion_en_min']
+    fields = ['usuario_post',
+    'autor',
+    'email',
+    'titulo', 
+    'direccion', 
+    'estreno', 
+    'duracion_en_min',
+    'Primer_cuerpo',
+    'Segundo_cuerpo',
+    'Primer_imagen',
+    'Segunda_imagen',]
+
 
 class PeliculaDeleteView(DeleteView):
 

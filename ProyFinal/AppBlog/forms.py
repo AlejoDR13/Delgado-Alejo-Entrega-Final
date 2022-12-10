@@ -9,15 +9,19 @@ from .models import *
 class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
+
+
 class CrearPelicula_form(forms.ModelForm):
     class Meta:
         model=Peliculas
         fields='__all__'
-        exclude = ('usuario_post', 'dislikes','likes')
-
+        
         widgets = {
-                    
+                    'usuario_post': forms.HiddenInput,
+                    'email': forms.HiddenInput,
                     'estreno': DateTimeInput(attrs={'class': 'form-control'}),
+                    'dislikes': forms.HiddenInput,
+                    'likes': forms.HiddenInput,
 
                 }
 

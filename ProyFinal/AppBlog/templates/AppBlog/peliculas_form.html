@@ -2,12 +2,38 @@
 
 {% load static %}
 
-{% block ContenidoBody %}
-    <form method="post">{% csrf_token %}
+{% block ContenidoDinamico1 %}
 
-        {{form.as_p}}
-        <input type="submit" value="Enviar">
-    </form>
+<header class="py-5 bg-image-full" style="background-image: url(https://c.wallhere.com/photos/bc/92/color_background_surface_solid-1097402.jpg!d)">
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4" src="https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4" style="width: 15%"/>
+        <h1 class="text-white fs-1 fw-bolder">Editar post</h1>
+        <p class="text-white-50 mb-0">Administra la información del post</p>
+    </div>
+</header>
+
+{% endblock %}
+
+{% block ContenidoBody %}
+<div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <div>
+            <form  method="post" enctype="multipart/form-data" >
+              
+              {% csrf_token %}
+                <table>   
+                    {{ form.as_table }}
+                </table>
+                <br>
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
 {% endblock %}
 
 {% block BotonVolver %}
