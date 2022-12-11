@@ -113,11 +113,62 @@ class PeliculasListView(ListView):
     paginate_by = 9  # if pagination is desiredcd
     fields= "__all__"
     
+@login_required
+def leavecomment(request, titulo):
+
+
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+
+        img = avatar[0].imagen.url
+
+    else:
+
+        img = None
+
+    if request.method =='POST':
+
+        miComment = LeaveComment_form(request.POST)
+
+        if miComment.is_valid():
+
+            content = miComment.cleaned_data
+
+            pelicula = Peliculas.objects.filter(titulo=titulo)
+
+            pelicula = pelicula[0].titulo
+
+            comment = Comment(usuario=content['usuario'], body=content['body'], pelicula = pelicula)
+
+            comment.save()
+
+            postslist = Peliculas.objects.all().order_by('-fecha')
+
+            return render(request, 'AppBlog/templates/AppBlog/peliculaslistar.html', {'postlist': postslist, 'img': img})
+    
+    else:
+
+        pelicula = Peliculas.objects.filter(titulo=titulo)
+
+        pelicula = pelicula[0].titulo
+
+        miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
+
+    return render(request, 'AppBlog/commentform.html', {'miComment': miComment, 'img': img})
+
 class PeliculaDetailView(DetailView):
 
     model = Peliculas
     template_name = "AppBlog/post.html"   
     fields= "__all__"     
+
+    def get_context_data(self, *args, **kwargs ):
+        pk = self.kwargs.get('pk')
+        context = super(PeliculaDetailView, self).get_context_data(**kwargs)
+        context['comentarios']=Comment.objects.filter(post=pk)
+        return context
+
 
 class PeliculaUpdateView(UpdateView):
     model = Peliculas
@@ -198,47 +249,3 @@ class AddDislike(LoginRequiredMixin, View):
         return HttpResponseRedirect(next)
     login_url = reverse_lazy('AppUsers:Login')
 
-
-@login_required
-def leavecomment(request, titulo):
-
-
-    avatar = Avatar.objects.filter(user=request.user)
-
-    if len(avatar) > 0:
-
-        img = avatar[0].imagen.url
-
-    else:
-
-        img = None
-
-    if request.method =='POST':
-
-        miComment = LeaveComment_form(request.POST)
-
-        if miComment.is_valid():
-
-            content = miComment.cleaned_data
-
-            pelicula = Peliculas.objects.filter(titulo=titulo)
-
-            pelicula = pelicula[0].titulo
-
-            comment = Comment(usuario=content['usuario'], body=content['body'], pelicula = pelicula)
-
-            comment.save()
-
-            postslist = Peliculas.objects.all().order_by('-fecha')
-
-            return render(request, 'AppBlog/templates/AppBlog/peliculaslistar.html', {'postlist': postslist, 'img': img})
-    
-    else:
-
-        pelicula = Peliculas.objects.filter(titulo=titulo)
-
-        pelicula = pelicula[0].titulo
-
-        miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
-
-    return render(request, 'AppBlog/commentform.html', {'miComment': miComment, 'img': img})
