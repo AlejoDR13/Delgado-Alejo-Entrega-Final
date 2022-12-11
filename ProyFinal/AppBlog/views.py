@@ -101,19 +101,45 @@ class PeliculaCreateView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('AppUsers:Login')
     
     def get_initial(self):
-       return {'usuario_post':self.request.user,'autor':self.request.user.autor ,'email':self.request.user.email}
-    
+       return {'usuario_post':self.request.user,'autor':self.request.user ,'email':self.request.user.email}
+
+    def get_context_data(self, *args, **kwargs ):
+
+        avatar = Avatar.objects.filter(user=self.request.user)
+
+        if len(avatar) > 0:
+            img = avatar[0].imagen.url
+
+        else:
+            img = None
+
+        context = super(PeliculaCreateView, self).get_context_data(**kwargs)
+        context['img']=img
+        return context   
 class PeliculasListView(ListView):
 
     template_name = "AppBlog/templates/AppBlog/peliculaslistar.html"
 
     model = Peliculas, Avatar
     queryset = Peliculas.objects.all()
-
-    paginate_by = 9  # if pagination is desiredcd
+    paginate_by = 9 
     fields= "__all__"
+
+    def get_context_data(self, *args, **kwargs ):
+
+        avatar = Avatar.objects.filter(user=self.request.user)
+
+        if len(avatar) > 0:
+            img = avatar[0].imagen.url
+
+        else:
+            img = None
+
+        context = super(PeliculasListView, self).get_context_data(**kwargs)
+        context['img']=img
+        return context
     
-@login_required
+@login_required(login_url='AppUsers:Login')
 def leavecomment(request, titulo):
 
     avatar = Avatar.objects.filter(user=request.user)
@@ -166,6 +192,19 @@ class PeliculaDetailView(DetailView):
         context['comentarios']=Comment.objects.filter(post=pk)
         return context
 
+    def get_context_data(self, *args, **kwargs ):
+
+        avatar = Avatar.objects.filter(user=self.request.user)
+
+        if len(avatar) > 0:
+            img = avatar[0].imagen.url
+
+        else:
+            img = None
+
+        context = super(PeliculaDetailView, self).get_context_data(**kwargs)
+        context['img']=img
+        return context
 
 class PeliculaUpdateView(UpdateView):
     model = Peliculas
@@ -182,11 +221,37 @@ class PeliculaUpdateView(UpdateView):
     'Primer_imagen',
     'Segunda_imagen',]
 
+    def get_context_data(self, *args, **kwargs ):
+
+        avatar = Avatar.objects.filter(user=self.request.user)
+
+        if len(avatar) > 0:
+            img = avatar[0].imagen.url
+
+        else:
+            img = None
+
+        context = super(PeliculaUpdateView, self).get_context_data(**kwargs)
+        context['img']=img
+        return context
+
 class PeliculaDeleteView(DeleteView):
     model = Peliculas
     success_url = reverse_lazy('AppBlog:ListaPelicula')
+    
+    def get_context_data(self, *args, **kwargs ):
 
-#--------------------------------------------------------------------------------------------------------------------------------
+        avatar = Avatar.objects.filter(user=self.request.user)
+
+        if len(avatar) > 0:
+            img = avatar[0].imagen.url
+
+        else:
+            img = None
+
+        context = super(PeliculaDeleteView, self).get_context_data(**kwargs)
+        context['img']=img
+        return context
 
 class AddLike(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
@@ -245,4 +310,3 @@ class AddDislike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
     login_url = reverse_lazy('AppUsers:Login')
-

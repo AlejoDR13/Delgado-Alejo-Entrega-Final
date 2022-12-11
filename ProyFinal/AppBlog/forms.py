@@ -28,26 +28,3 @@ class LeaveComment_form(forms.Form):
     usuario = forms.CharField(max_length=50)
     comentario = forms.CharField(widget=forms.Textarea)
     post = forms.CharField(max_length=40, label='Post comentado') #Estaria bueno ocultarlo a este
-
-    #class Meta:
-    #    model = Comment
-    #    fields = ['post']
-    #    widgets = {
-    #                'post': forms.HiddenInput,
-    #            }
-
-
-
-#class LeaveComment_form(forms.ModelForm):
-#    comment = forms.CharField(
-#        widget=forms.Textarea(attrs={
-#            'class': 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-dark-third dark:border-dark-third dark:text-dark-txt flex m',
-#            'rows': '1',
-#            'placeholder':'Deja un comentario...'
-#            }),
-#        required=True
-#        )
-#    
-#    class Meta:
-#        model=Comment
-#        fields=['comment']

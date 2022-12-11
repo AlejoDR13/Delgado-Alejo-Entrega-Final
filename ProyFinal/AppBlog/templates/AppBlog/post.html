@@ -32,7 +32,7 @@
 
                             <h4 class="text-muted fst-italic mb-2">Director: {{peliculas.direccion}}</h4>
                             <h4 class="text-muted fst-italic mb-2">Estreno: {{peliculas.estreno}}</h4>
-                            <h4 class="text-muted fst-italic mb-2">Duración: {{peliculas.druacion_en_min}} min</h4>
+                            <h4 class="text-muted fst-italic mb-2">Duración: {{peliculas.duracion_en_min}} min</h4>
 
                             <!-- post meta content-->
                             <div class="text-muted fst-italic mb-2">Post publicado el {{peliculas.fecha}} | <a href="{% url 'AppUsers:OpenProfile' peliculas.usuario_post %}">{{peliculas.usuario_post}} </a></div>
@@ -60,6 +60,10 @@
                 <p class="fs-5 mb-4">{{peliculas.Segundo_cuerpo}}</p>
     
             <p class="text-muted fst-italic mb-3">Por: {{peliculas.autor}}</p>
+
+    {% endblock %}
+
+    {% block ContenidoDinamico5%}
 
     {% endblock %}
 
@@ -142,7 +146,6 @@
                 </div>
             </div>
 
-    
     <!-- COMENTARIOS PUBLICADOS-->
     {% for comment in comentarios %}
     
@@ -163,7 +166,7 @@
     {% endfor %}
     
     {% endblock %}
-    
+
     {% block BotonVolver %}
     <a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">Volver</a>
     </div>
