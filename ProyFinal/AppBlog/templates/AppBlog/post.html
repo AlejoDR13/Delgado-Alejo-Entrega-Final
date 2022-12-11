@@ -43,33 +43,23 @@
                         <figure class="mb-4"><img class="img-fluid rounded" src="{{peliculas.Primer_imagen.url}}" alt="PostImg"></figure>
                         {%endif%}
                         <!-- Post content-->
-                        <section class="mb-5">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <ul class="list-unstyled mb-0">
-                                    <p>
-                                        {{peliculas.Primer_cuerpo}}
-                                    </p>
-                                    </ul>
-                                </div>
-                            </div>
-
-
+                    </article>
+                </div>
+            </div>
+                <p class="fs-5 mb-4">{{peliculas.Primer_cuerpo}}</p>
+            <div class="row">
+                <div class="col-lg-8">
+                    <article>
                             {% if peliculas.Segunda_imagen %}
                             <figure class="mb-4"><img class="img-fluid rounded" src="{{peliculas.Segunda_imagen.url}}" alt="PostImg"></figure>
                             {%endif%}
 
-                            <p class="fs-5 mb-4">{{peliculas.Segundo_cuerpo}}</p>
-                            
-                            <p class="text-muted fst-italic mb-3">Por: {{peliculas.autor}}</p>
-                        </section>
-
-                        <!-- Comment section-->
-
                     </article>
                 </div>
             </div>
-        </div>
+                <p class="fs-5 mb-4">{{peliculas.Segundo_cuerpo}}</p>
+    
+            <p class="text-muted fst-italic mb-3">Por: {{peliculas.autor}}</p>
 
     {% endblock %}
 
