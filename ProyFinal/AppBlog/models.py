@@ -16,7 +16,7 @@ class Peliculas(models.Model):
     email = models.EmailField(max_length=40, blank=True, null=True)
     fecha = models.DateField(auto_now_add=True, null=True, blank=True)
     #Datos de la PELICULA (POST)
-    titulo = models.CharField(max_length=40, primary_key=True)
+    titulo = models.CharField(primary_key=True, max_length=40)
     #genero = models.ManyToManyField(Generos, null=True, blank=True) SOLUCIONAR ESTO
     direccion = models.CharField(max_length=40)
     estreno = models.DateTimeField()
@@ -31,12 +31,13 @@ class Peliculas(models.Model):
     def __str__(self) -> str:
         return f'{self.titulo} | {self.usuario_post}'
 
-#class Comment(models.Model):
-#    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_comment_author')
-#    body = models.TextField()
-#    fecha = models.DateTimeField(auto_now_add=True)
-#    post = models.CharField(max_length=100)
-#    likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')
-#    dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')    
-#
-#    def __str__(self) -> str:+
+class Comment(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_comment_author')
+    body = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    post = models.CharField(max_length=100)
+    #likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')
+    #dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')    
+
+    def __str__(self) -> str:
+        return f'{self.usuario} | {self.post}'        

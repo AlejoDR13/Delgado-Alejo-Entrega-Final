@@ -43,7 +43,16 @@
                         {%endif%}
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4">{{peliculas.Primer_cuerpo}}</p>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <ul class="list-unstyled mb-0">
+                                    <p>
+                                        {{peliculas.Primer_cuerpo}}
+                                    </p>
+                                    </ul>
+                                </div>
+                            </div>
+
 
                             {% if peliculas.Segunda_imagen %}
                             <figure class="mb-4"><img class="img-fluid rounded" src="{{peliculas.Segunda_imagen.url}}" alt="PostImg"></figure>
@@ -51,7 +60,7 @@
 
                             <p class="fs-5 mb-4">{{peliculas.Segundo_cuerpo}}</p>
                             
-                            <p class="text-muted fst-italic mb-3">Por: {{peliculas.autor_post}}</p>
+                            <p class="text-muted fst-italic mb-3">Por: {{peliculas.autor}}</p>
                         </section>
 
                         <!-- Comment section-->
@@ -64,71 +73,69 @@
     {% endblock %}
 
     {% block ContenidoBody %}
-                            <!-- CALIFICACION/ LE FALTA HACERLO ANDAR-->
+                            <!-- Likes/Dislikes-->
                             <div class="card" style="width: 18rem;">
-                                <div class="card-header">¡Califica el post!</div>
+                                <div class="card-header">¡Califica el post!
+
+                                </div>
                                 <p></p>
                                 <div class="card-text">
                                     <ul class="list-unstyled mb-0">
-                                            <div id="wrapper">
-
-                                                <!-- POST REACT -->
-                                                <div class = "px-4 py-2">
-                                                    <div class = "flex items-center justify-between">
-                                                      <div class = "flex flex-row-reverse items-center">
+                                        <div id="wrapper">
+                                            <!-- POST REACT -->
+                                            <div class = "px-4 py-2">
+                                                <div class = "flex items-center justify-between">
+                                                  <div class = "flex flex-row-reverse items-center">
+                                              
+                                                    <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.likes.all.count}} Likes </span>
+                                                    <form method="POST" action="{% url "AppBlog:like" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-blue-500"> 
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="next" value={{request.path}}>
+                                                        
+                                                    </form>
                                                   
-                                                        <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.likes.all.count}} Likes </span>
-                                                        <form method="POST" action="{% url "AppBlog:like" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-blue-500"> 
-                                                            {% csrf_token %}
-                                                            <input type="hidden" name="next" value={{request.path}}>
-                                                            
-                                                        </form>
-                                                      
-                                                      </div>
-                                                  
-                                                      <div class = "flex flex-row-reverse items-center">
-                                                  
-                                                        <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.dislikes.all.count}} Dislikes </span>
-                                                        <form method="POST" action="{% url "AppBlog:dislike" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-red-500"> 
-                                                            {% csrf_token %}
-                                                            <input type="hidden" name="next" value={{request.path}}>
-                                                            
-                                                        </form>
-                                                      
-                                                      </div>
-                                                  
-                                                      <div class="text-gray-500 dark:text-dark-txt">
-                                                      <!-- Comentms????-->
-                                                      </div>
-                                                    </div>
                                                   </div>
-                                                <!-- END POST REACT -->    
-                                                
-                                                
-                                                <!-- POST ACTION -->
-                                                <dic x-data={"open:false"} class="py-2 px-4">
-                                                    <div class="border border-gray-200 dark:border-dark-third border-1-0 border-r-0 py-1">
-                                                        <div class="flex space-x-2">
-
-                                                            <form method="POST" action="{% url 'AppBlog:like' peliculas.pk %}" class="mt-2 px-2">
-                                                                {% csrf_token %}
-                                                                <input type="hidden" name="next" value="{{request.path}}">
-                                                                <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
-                                                                    <i class='bx bx-like'></i>
-                                                                    <p class="text-sm font-semibold">Like</p>
-                                                                </button>
-                                                            </form>
-
-                                                            <form method="POST" action="{% url 'AppBlog:dislike' peliculas.pk %}" class="mt-2 px-2">
-                                                                {% csrf_token %}
-                                                                <input type="hidden" name="next" value="{{request.path}}">
-                                                                <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
-                                                                    <i class='bx bx-like'></i>
-                                                                    <p class="text-sm font-semibold">Dislike</p>
-                                                                </button>
-                                                            </form>
-
-                                                <!-- END POST REACT -->
+                                              
+                                                  <div class = "flex flex-row-reverse items-center">
+                                              
+                                                    <span class="text-cs ml-2 text-gray-500 dark:text-dark-text">{{peliculas.dislikes.all.count}} Dislikes </span>
+                                                    <form method="POST" action="{% url "AppBlog:dislike" peliculas.pk %}" class="rounded-full grid place-items-center text-xl -ml-1 text-red-500"> 
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="next" value={{request.path}}>
+                                                        
+                                                    </form>
+                                                  
+                                                  </div>
+                                              
+                                                  <div class="text-gray-500 dark:text-dark-txt">
+                                                  <!-- Comentms????-->
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            <!-- END POST REACT -->    
+                                            
+                                            
+                                            <!-- POST ACTION -->
+                                            <dic x-data={"open:false"} class="py-2 px-4">
+                                                <div class="border border-gray-200 dark:border-dark-third border-1-0 border-r-0 py-1">
+                                                    <div class="flex space-x-2">
+                                                        <form method="POST" action="{% url 'AppBlog:like' peliculas.pk %}" class="mt-2 px-2">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value="{{request.path}}">
+                                                            <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
+                                                                <i class='bx bx-like'></i>
+                                                                <p class="text-sm font-semibold">Like</p>
+                                                            </button>
+                                                        </form>
+                                                        <form method="POST" action="{% url 'AppBlog:dislike' peliculas.pk %}" class="mt-2 px-2">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value="{{request.path}}">
+                                                            <button type="submit" class="flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text">
+                                                                <i class='bx bx-like'></i>
+                                                                <p class="text-sm font-semibold">Dislike</p>
+                                                            </button>
+                                                        </form>
+                                            <!-- END POST REACT -->
                                             </div>
                                     </ul>
                                 </div>
@@ -136,7 +143,7 @@
     
                             <p></p>
                             <!-- CRUDS y COMENTS-->
-                            <a class="btn btn-primary" href="#">¡Deja tu comentario!</a>
+                            <a class="btn btn-primary" href="{% url 'AppBlog:DejarComentario' peliculas.pk %}">¡Deja tu comentario!</a>
     
                                 <p></p>
                             </article>

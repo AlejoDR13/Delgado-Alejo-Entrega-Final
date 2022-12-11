@@ -9,8 +9,6 @@ from .models import *
 class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
-
-
 class CrearPelicula_form(forms.ModelForm):
     class Meta:
         model=Peliculas
@@ -24,6 +22,20 @@ class CrearPelicula_form(forms.ModelForm):
                     'likes': forms.HiddenInput,
 
                 }
+
+class LeaveComment_form(forms.Form):
+
+    usuario = forms.CharField(max_length=50)
+    body = forms.CharField(widget=forms.Textarea)
+    post = forms.CharField(max_length=40, label='Post comentado') #Estaria bueno ocultarlo a este
+
+    #class Meta:
+    #    model = Comment
+    #    fields = ['post']
+    #    widgets = {
+    #                'post': forms.HiddenInput,
+    #            }
+
 
 
 #class LeaveComment_form(forms.ModelForm):

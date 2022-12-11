@@ -1,3 +1,4 @@
+import difflib
 from django.shortcuts import render, redirect
 #Django login 
 from django.contrib.auth.decorators import login_required
@@ -11,9 +12,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views import View
 #AppBlog FORMULARIOS
-from AppBlog.forms import CrearPelicula_form
+from AppBlog.forms import CrearPelicula_form, LeaveComment_form
 #AppBlog MODELOS
-from AppBlog.models import Peliculas
+from AppBlog.models import Peliculas, Comment
 #AppUser MODELOS
 from AppUsers.models import Avatar
 
@@ -24,10 +25,52 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import get_user
 #------------------------------------------------------------------------------------------------------
 def inicio(request):
-    return render(request, 'AppBlog/templates/AppBlog/inicio.html')
+
+    if request.user.username:
+
+        avatar = Avatar.objects.filter(user=request.user)
+
+        usuario = request.user
+
+        if len(avatar) > 0:
+
+            img = avatar[0].imagen.url
+
+        else:
+
+            img = None
+
+    else:
+
+        img = None
+
+        usuario = None
+
+    return render(request, 'AppBlog/inicio.html', {'user': usuario, 'img':img})
 
 def sobremi(request):
-    return render(request, 'AppBlog/templates/AppBlog/sobremi.html')
+    
+    if request.user.username:
+
+        avatar = Avatar.objects.filter(user=request.user)
+
+        usuario = request.user
+
+        if len(avatar) > 0:
+
+            img = avatar[0].imagen.url
+
+        else:
+
+            img = None
+
+    else:
+
+        img = None
+
+        usuario = None
+
+    return render(request, 'AppBlog/templates/AppBlog/sobremi.html', {'user': usuario, 'img':img})
 
 def searchpost(request):
     
@@ -51,23 +94,25 @@ def searchpost(request):
     return render(request, 'AppBlog/showing.html', {"error": error, 'img': img})
 
 class PeliculaCreateView(LoginRequiredMixin, CreateView):
-     model = Peliculas
-     template_name = "AppBlog/templates/AppBlog/crearpelicula.html"
-     form_class = CrearPelicula_form
-     success_url = reverse_lazy('AppBlog:ListaPelicula')
-     login_url = reverse_lazy('AppUsers:Login')
-     
-     def get_initial(self):
-        return {'usuario_post':self.request.user, 'email':self.request.user.email}
+    model = Peliculas
+    template_name = "AppBlog/templates/AppBlog/crearpelicula.html"
+    form_class = CrearPelicula_form
+    success_url = reverse_lazy('AppBlog:ListaPelicula')
+    login_url = reverse_lazy('AppUsers:Login')
+    
+    def get_initial(self):
+       return {'usuario_post':self.request.user,'autor':self.request.user.autor ,'email':self.request.user.email}
+    
 class PeliculasListView(ListView):
 
     template_name = "AppBlog/templates/AppBlog/peliculaslistar.html"
 
-    model = Peliculas
+    model = Peliculas, Avatar
     queryset = Peliculas.objects.all()
+
     paginate_by = 9  # if pagination is desiredcd
     fields= "__all__"
-
+    
 class PeliculaDetailView(DetailView):
 
     model = Peliculas
@@ -92,50 +137,6 @@ class PeliculaUpdateView(UpdateView):
 class PeliculaDeleteView(DeleteView):
     model = Peliculas
     success_url = reverse_lazy('AppBlog:ListaPelicula')
-
-@login_required
-def leavecomment(request, titulo):
-
-
-    avatar = Avatar.objects.filter(user=request.user)
-
-    if len(avatar) > 0:
-
-        img = avatar[0].imagen.url
-
-    else:
-
-        img = None
-
-    if request.method =='POST':
-
-        miComment = LeaveComment_form(request.POST)
-
-        if miComment.is_valid():
-
-            content = miComment.cleaned_data
-
-            pelicula = Peliculas.objects.filter(titulo=titulo)
-
-            pelicula = pelicula[0].titulo
-
-            comment = Comment(usuario=content['usuario'], body=content['body'], pelicula = pelicula)
-
-            comment.save()
-
-            postslist = Peliculas.objects.all().order_by('-fecha')
-
-            return render(request, 'AppBlog/templates/AppBlog/peliculaslistar.html', {'postlist': postslist, 'img': img})
-    
-    else:
-
-        pelicula = Peliculas.objects.filter(titulo=titulo)
-
-        pelicula = pelicula[0].titulo
-
-        miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
-
-    return render(request, 'AppBlog/leavecomment.html', {'miComment': miComment, 'img': img})
 
 #--------------------------------------------------------------------------------------------------------------------------------
 
@@ -196,3 +197,48 @@ class AddDislike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
     login_url = reverse_lazy('AppUsers:Login')
+
+
+@login_required
+def leavecomment(request, titulo):
+
+
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+
+        img = avatar[0].imagen.url
+
+    else:
+
+        img = None
+
+    if request.method =='POST':
+
+        miComment = LeaveComment_form(request.POST)
+
+        if miComment.is_valid():
+
+            content = miComment.cleaned_data
+
+            pelicula = Peliculas.objects.filter(titulo=titulo)
+
+            pelicula = pelicula[0].titulo
+
+            comment = Comment(usuario=content['usuario'], body=content['body'], pelicula = pelicula)
+
+            comment.save()
+
+            postslist = Peliculas.objects.all().order_by('-fecha')
+
+            return render(request, 'AppBlog/templates/AppBlog/peliculaslistar.html', {'postlist': postslist, 'img': img})
+    
+    else:
+
+        pelicula = Peliculas.objects.filter(titulo=titulo)
+
+        pelicula = pelicula[0].titulo
+
+        miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
+
+    return render(request, 'AppBlog/commentform.html', {'miComment': miComment, 'img': img})

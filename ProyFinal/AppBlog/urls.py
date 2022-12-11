@@ -5,7 +5,7 @@ AppBlog_patterns =([
     path('', inicio, name="Inicio"),
     path('sobremi/', sobremi, name="Sobremi"),
     path('showing/', searchpost, name='BuscarPost'),    
-    path('commentform/<pk>', leavecomment, name='NewComment'),
+    path('commentform/<titulo>', leavecomment, name='DejarComentario'),
     #CRUDS
     path('pelicula_detail/<pk>', PeliculaDetailView.as_view(), name="DetallePelicula"),   
     path('pelicula_edit/<pk>', PeliculaUpdateView.as_view(), name='UpdatePelicula'),    

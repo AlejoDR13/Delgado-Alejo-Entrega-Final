@@ -126,7 +126,7 @@ def edituser_request(request):
                 usuario_k = UserAbout(user= usuario, bio=data1['bio'], instagram=data1['instagram'], facebook=data1['facebook'], twitter=data1['twitter'])
                 usuario_k.save()
 
-            return redirect('inicio')
+            return redirect('AppUsers:Profile')
 
         else:
 
@@ -174,7 +174,8 @@ def add_avatar(request):
 
                 img = None
 
-        return render(request, 'AppBlog/templates/AppBlog/inicio.html', {'img':img})
+        #return render(request, 'AppBlog/templates/AppBlog/inicio.html', {'img':img})
+        return redirect('AppUsers:Profile')
 
     else:
 

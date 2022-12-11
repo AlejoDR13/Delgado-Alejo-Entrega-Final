@@ -61,10 +61,20 @@
                                 <div class="text-muted mb-3">{{user.username}} | {{user.email}}</div>
                             </div>
                         </div>
-
+                        <div class="card mb-4">
+                            <div class="card-header">Biografia</div>
+                                <div class="card-body">
+                                <ul class="list-unstyled mb-0">
+                                    <p>
+                                        {{bio}}
+                                    </p>
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div id="description" class="container-fluid mb-5">
-                            <p>{{bio}}<p>
-                            <hr></hr>
+                            
+                        
                             <table style="width: 18%;">
 
                                 {%if instagram%}
