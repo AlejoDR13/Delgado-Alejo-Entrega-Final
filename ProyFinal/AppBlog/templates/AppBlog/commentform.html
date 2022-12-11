@@ -17,28 +17,31 @@
 
 <body>
 
-    {% block ContenidoBody %}
+{% block ContenidoBody %}
 
-    <div class="container mt-5">
-        <form action="" method="POST" class="form-group"> 
-            
-            {% csrf_token %}
-    
-            <table class="table">
-        
-            {{miComment.as_table}}
-        
-            </table>
-    
-            <input type="submit", value="Enviar comentario", class="btn btn-primary">
-    
-            <p></p>
-    
-        </form>
-    
+<div class="card mb-4">
+    <div class="card-header">Deja tu comentario ↴</div>
+    <div class="card-body">
+        <ul class="list-unstyled mb-0">
+            <p>
+                <form action="" method="POST" class="form-group">           
+                    {% csrf_token %}     
+
+                    <table class="table">  
+
+
+                    {{miComment.as_table}}
+
+                    </table>        
+
+                    <input type="submit", value="Enviar comentario", class="btn btn-primary"> 
+                </form>
+            </p>
+        </ul>
     </div>
-    
-    {% endblock %}
+</div>
+
+{% endblock %}
 
                 {% block BotonVolver %}
             <a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">Volver</a>

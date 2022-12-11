@@ -33,7 +33,7 @@ class Peliculas(models.Model):
 
 class Comment(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_comment_author')
-    body = models.TextField()
+    comentario = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
     post = models.CharField(max_length=100)
     #likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')

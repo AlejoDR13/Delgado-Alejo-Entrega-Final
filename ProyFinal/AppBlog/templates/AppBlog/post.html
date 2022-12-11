@@ -18,8 +18,9 @@
     {% endblock %}
 
     {% block ContenidoDinamico2 %}
+
     <!-- Page content-->
-        <div class="container mt-5">
+        <div class="card mb-4">
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
@@ -161,8 +162,9 @@
                 <!-- Comment with nested comments-->
                 <div class="d-flex mb-4">
                     <div class="ms-4">
-                        <div class="fw-bold mb-2">{{comment.usuario}} | {{comment.fecha}}</div>
-                            <p1 class="text-muted fst-italic mb-3">{{comment.body}}</p1>
+                        <div class="text-muted fst-italic mb-2">Usuario: <a href="{% url 'AppUsers:OpenProfile' peliculas.usuario_post %}">{{comment.usuario}} </a> | {{comment.fecha}}</div>
+
+                            <p1 class="text-muted fst-italic mb-3">{{comment.comentario}}</p1>
                     </div>
                 </div>
             </div>

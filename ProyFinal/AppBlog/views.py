@@ -116,15 +116,12 @@ class PeliculasListView(ListView):
 @login_required
 def leavecomment(request, titulo):
 
-
     avatar = Avatar.objects.filter(user=request.user)
 
     if len(avatar) > 0:
-
         img = avatar[0].imagen.url
 
     else:
-
         img = None
 
     if request.method =='POST':
@@ -139,7 +136,7 @@ def leavecomment(request, titulo):
 
             pelicula = pelicula[0].titulo
 
-            comment = Comment(usuario=content['usuario'], body=content['body'], pelicula = pelicula)
+            comment = Comment(usuario=request.user, comentario=content['comentario'], post = pelicula)
 
             comment.save()
 
@@ -153,7 +150,7 @@ def leavecomment(request, titulo):
 
         pelicula = pelicula[0].titulo
 
-        miComment = LeaveComment_form(initial={'usuario':request.user, 'pelicula':pelicula})
+        miComment = LeaveComment_form(initial={'usuario':request.user, 'post':pelicula})
 
     return render(request, 'AppBlog/commentform.html', {'miComment': miComment, 'img': img})
 
