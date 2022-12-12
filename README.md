@@ -74,5 +74,14 @@ Llegado a este punto y considerando que se ha instalado django, para poder visua
 
 ```sh
 (env) C:\Users\...\Proyecto\ProyFinal> py manage.py runserver
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 12, 2022 - 14:14:27
+Django version 3.2.16, using settings 'ProyFinal.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
 ```
- 
+Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog 🚀
