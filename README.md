@@ -8,8 +8,8 @@ En resumen, el proyecto consiste en la implementación de Django/Python para cre
 
 ![Logo](https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4)
 
-## 👨 Autor
-### Delgado Alejo
+## 👨 Autor ### Delgado Alejo
+
 ### 📱 Redes
 
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alejo-alfredo-angel-delgado-129b291b5/)
@@ -123,6 +123,38 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 |     fecha   |   DateTimeField   |
 |   post   |  CharField  |
 
+
+### 📊 Vistas
+
+Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno. Las mismas se resumen junto con la función que realizan acontinuación:
+
+```sh
+> def inicio(request):...
+
+>def sobremi(request):
+
+>def searchpost(request):
+
+>class PeliculaCreateView(LoginRequiredMixin, CreateView):
+
+>class PeliculasListView(ListView):
+
+@login_required(login_url='AppUsers:Login')
+>def leavecomment(request, titulo):
+
+>class PeliculaDetailView(DetailView):
+
+>class PeliculaUpdateView(UpdateView):
+
+>class PeliculaDeleteView(DeleteView):
+
+>class AddLike(LoginRequiredMixin, View):
+
+>class AddDislike(LoginRequiredMixin, View):
+
+>def aviso(request):
+```
+
 ### Aplicación de Usuarios (AppUsers) 
 
 ### 📊 Modelos
@@ -144,7 +176,35 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 |     facebook   |   URLField   |
 |     twitter   |   URLField   |
 
-Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su correspondiente información mediante DBeaver.
+### 📊 Vistas
+
+Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno. Las mismas se resumen junto con la función que realizan acontinuación:
+
+```sh
+> def login_request(request):...
+
+>def register_request(request):
+
+@login_required
+>def edituser_request(request):...
+
+@login_required
+>def add_avatar(request,):...
+
+@login_required
+>def open_profile(request):
+
+>def open_user_profile(request, usuario):
+```
+
+
+Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda la información que nos brinda django con respecto a las tablas de usuarios, administradores, persmisos, etc., mediante DBeaver.
+
 ### Diagrama ER
 
 <img src="/DB.png">
+
+
+
+### Agradecimientos
+
