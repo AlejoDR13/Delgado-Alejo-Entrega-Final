@@ -126,7 +126,7 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 
 ### 📊 Vistas
 
-Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno. Las mismas se resumen junto con la función que realizan acontinuación:
+Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio conveniente. Las mismas se resumen junto con la función que realizan acontinuación:
 
 ```sh
 > def inicio(request):... #### Renderizar el inicio junto con los datos de usuario y del avatar correspondiente.
@@ -142,17 +142,17 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 @login_required(login_url='AppUsers:Login')
 >def leavecomment(request, titulo):... #### Solicita un inicio de sesión en primer lugar, luego renderiza el .html donde se escribe el comentario que el usuario desee, junto con los datos de usuario y del avatar correspondiente
 
->class PeliculaDetailView(DetailView):... #### No solicita un inicio de sesión ya que solo nos renderiza el .html donde se observan los detalles del posteo, nos solicitara iniciar sesión si deseamos interactura, si esta la sesión iniciada tambien se pasara por contexto los datos de usuario y del avatar correspondiente.
+>class PeliculaDetailView(DetailView):... #### No solicita un inicio de sesión ya que solo nos renderiza el .html donde se observan los detalles del posteo, los likes, dislikes, comentarios y nos solicitara iniciar sesión si deseamos interactura, si esta la sesión iniciada tambien se pasara por contexto los datos de usuario y del avatar correspondiente.
 
->class PeliculaUpdateView(UpdateView):
+>class PeliculaUpdateView(UpdateView):... #### Opción que solamente observa alguien con permisos de administrador, renderiza el .html que nos permite modificar los campos de los posteos, junto con los datos de usuario y del avatar correspondiente. 
 
->class PeliculaDeleteView(DeleteView):
+>class PeliculaDeleteView(DeleteView):... #### Opción que solamente observa alguien con permisos de administrador, renderiza el .html que nos avisa que posteo se esta por eliminar, y nos da la posibilidad de volver o ejecutar la acción, junto con los datos de usuario y del avatar correspondiente.
 
->class AddLike(LoginRequiredMixin, View):
+>class AddLike(LoginRequiredMixin, View):... #### Solicita un inicio de sesión en primer lugar, una vez realizado nos permite ejecutar la acción de dar Like a un post en especifico modificando asi el contador de likes, junto con los datos de usuario y del avatar correspondiente.
 
->class AddDislike(LoginRequiredMixin, View):
+>class AddDislike(LoginRequiredMixin, View):... #### Solicita un inicio de sesión en primer lugar, una vez realizado nos permite ejecutar la acción de dar Lislike a un post en especifico modificando asi el contador de dislikes, junto con los datos de usuario y del avatar correspondiente.
 
->def aviso(request):
+>def aviso(request):... #### Renderiza una pagina que da aviso de que hay alguna funcionalidad no disponible en el Blog, junto con los datos de usuario y del avatar correspondiente.
 ```
 
 ### Aplicación de Usuarios (AppUsers) 
