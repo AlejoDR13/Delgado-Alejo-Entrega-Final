@@ -1,4 +1,4 @@
-# PeliBlog - Entrega Final del curso de Python (Coderhouse)
+# PeliBlog - Entrega Final (Coderhouse)
 ## Descripción 
 PeliBlog consiste en un Blog de Peliculas donde los usuarios pueden postear opiniones, comentarios, reseñas sobre lo que deseen dando la información correspondiente de la pelicula de la cual habla su posteo. Dicha web tiene administradores, perfiles de usuarios donde se puede visualizar la informacion personal junto con su correspondiente avatar, para poder reaccionar o interactuar se debe estar logueado por lo tanto cuenta con registros para quien quiera aportar o interactuar, de no ser así, cualquier persona podrá simplemente visualizar el Blog como lo desee. 
 
