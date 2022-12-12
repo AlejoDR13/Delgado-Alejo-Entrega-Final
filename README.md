@@ -92,9 +92,9 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 
 ### Aplicación del Blog (AppBlog)
 
-#### 📊 Modelos
+### 📊 Modelos
 
-### 🔑 Peliculas
+#### 🔑 Peliculas
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
@@ -114,7 +114,7 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 |   likes    |   ManyToManyField   | 
 |   dislikes    |   ManyToManyField   |  
 
-### 🔑 Comment
+#### 🔑 Comment
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
@@ -125,16 +125,16 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 
 ### Aplicación de Usuarios (AppUsers) 
 
-#### 📊 Modelos
+### 📊 Modelos
 
-### 🔑 Avatar
+#### 🔑 Avatar
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
 |    user    |   ForeignField   |
 |   imagen   |   ImageField   |
 
-###🔑 UserAbout
+#### 🔑 UserAbout
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
