@@ -90,16 +90,11 @@ Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog �
 
 El proyecto consta de dos aplicaciones, una dedicada a la estructura general del Blog, es decir; el inicio, mostrar los posts en una galeria, crear posts, sistema de likes, comentarios, etc. Y la otra aplicación consiste en administrar el registro, inicio de sesión, información de los usuarios en general. 
 
-Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su correspondiente información mediante DBeaver.
-### Diagrama ER
-
-<img src="/DB.png">
-
 ### Aplicación del Blog (AppBlog)
 
 #### 📊 Modelos
 
-####🔑 Peliculas
+###🔑 Peliculas
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
@@ -119,7 +114,7 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su c
 |   likes    |   ManyToManyField   | 
 |   dislikes    |   ManyToManyField   |  
 
-####🔑 Comment
+###🔑 Comment
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
@@ -132,14 +127,14 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su c
 
 #### 📊 Modelos
 
-####🔑 Avatar
+###🔑 Avatar
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
 |    user    |   ForeignField   |
 |   imagen   |   ImageField   |
 
-####🔑 UserAbout
+###🔑 UserAbout
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
@@ -148,3 +143,8 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su c
 |     instagram   |   URLField   |
 |     facebook   |   URLField   |
 |     twitter   |   URLField   |
+
+Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su correspondiente información mediante DBeaver.
+### Diagrama ER
+
+<img src="/DB.png">
