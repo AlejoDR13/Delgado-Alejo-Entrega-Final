@@ -10,6 +10,14 @@ class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
 class CrearPelicula_form(forms.ModelForm):
+    autor = forms.CharField(max_length=40, label='Autor del post', widget=forms.TextInput(attrs={'placeholder': 'Nombre, Apellido'}))
+    titulo = forms.CharField(max_length=40, label='Titulo', widget=forms.TextInput(attrs={'placeholder': 'Nombre de la pelicula'}))
+    genero = forms.CharField(max_length=40, label='Genero', widget=forms.TextInput(attrs={'placeholder': 'Ej: Drama, Suspenso, etc.'}))
+    direccion = forms.CharField(max_length=40, label='Director')
+    duracion_en_min = forms.IntegerField(label='Duración (min)', required=True)
+    Primer_imagen = forms.ImageField(required= True)
+    Segunda_imagen = forms.ImageField(required= True)
+    
     class Meta:
         model=Peliculas
         fields='__all__'

@@ -39,6 +39,7 @@
                   <h4>{{ film.duracion_en_min|date:"c" }}</h4> 
                   <p class="card-text">
                   <div class="text-muted fst-italic mb-2">Por: <a href="{% url 'AppUsers:OpenProfile' film.usuario_post %}">{{film.usuario_post}} </a></div>
+                  <div class="text-muted fst-italic mb-2"> {{film.genero}} </a></div>  
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">

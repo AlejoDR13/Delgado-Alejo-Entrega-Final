@@ -101,7 +101,7 @@ class PeliculaCreateView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('AppUsers:Login')
     
     def get_initial(self):
-       return {'usuario_post':self.request.user,'autor':self.request.user ,'email':self.request.user.email}
+       return {'usuario_post':self.request.user,'email':self.request.user.email}
 
     def get_context_data(self, *args, **kwargs ):
 
@@ -181,7 +181,7 @@ def leavecomment(request, titulo):
 
             postslist = Peliculas.objects.all().order_by('-fecha')
 
-            return render(request, 'AppBlog/templates/AppBlog/peliculaslistar.html', {'postlist': postslist, 'img': img})
+            return render(request, 'AppBlog/templates/AppBlog/inicio.html', {'postlist': postslist, 'img': img})
     
     else:
 
