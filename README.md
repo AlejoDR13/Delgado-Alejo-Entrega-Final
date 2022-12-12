@@ -129,20 +129,20 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno. Las mismas se resumen junto con la función que realizan acontinuación:
 
 ```sh
-> def inicio(request):...
+> def inicio(request):... #### Renderizar el inicio junto con los datos de usuario y del avatar correspondiente.
 
->def sobremi(request):
+>def sobremi(request):... #### Renderizar la pagina "Sobre mi" junto con los datos de usuario y del avatar correspondiente.
 
->def searchpost(request):
+>def searchpost(request):... #### Renderiza la pagina de Busqueda, realiza un request con lo que se desea obtener, junto con los datos de usuario y del avatar correspondiente.
 
->class PeliculaCreateView(LoginRequiredMixin, CreateView):
+>class PeliculaCreateView(LoginRequiredMixin, CreateView):... #### Solicita un inicio de sesión en primer lugar, luego renderiza el .html donde se crea el post que el usuario desee, junto con los datos de usuario y del avatar correspondiente.
 
->class PeliculasListView(ListView):
+>class PeliculasListView(ListView):... #### No solicita un inicio de sesión ya que solo nos renderiza el .html donde observan los posts creados por otros usuariose, y si esta logueado se pasa por contexto tambien los datos de usuario y del avatar correspondiente.
 
 @login_required(login_url='AppUsers:Login')
->def leavecomment(request, titulo):
+>def leavecomment(request, titulo):... #### Solicita un inicio de sesión en primer lugar, luego renderiza el .html donde se escribe el comentario que el usuario desee, junto con los datos de usuario y del avatar correspondiente
 
->class PeliculaDetailView(DetailView):
+>class PeliculaDetailView(DetailView):... #### No solicita un inicio de sesión ya que solo nos renderiza el .html donde se observan los detalles del posteo, nos solicitara iniciar sesión si deseamos interactura, si esta la sesión iniciada tambien se pasara por contexto los datos de usuario y del avatar correspondiente.
 
 >class PeliculaUpdateView(UpdateView):
 
@@ -178,7 +178,7 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 
 ### 📊 Vistas
 
-Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno. Las mismas se resumen junto con la función que realizan acontinuación:
+Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno, pero en el caso de la Aplicacion de Usuarios, se implemento solamente Vistas Basadas en Funciones. Las mismas se resumen junto con la función que realizan acontinuación:
 
 ```sh
 > def login_request(request):...
