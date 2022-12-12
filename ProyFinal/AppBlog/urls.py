@@ -4,6 +4,7 @@ from AppBlog.views import *
 AppBlog_patterns =([
     path('', inicio, name="Inicio"),
     path('sobremi/', sobremi, name="Sobremi"),
+    path('aviso/', aviso, name="Aviso"),
     path('showing/', searchpost, name='BuscarPost'),    
     path('commentform/<titulo>', leavecomment, name='DejarComentario'),
     #CRUDS

@@ -78,13 +78,20 @@ def searchpost(request):
     print(data)
     error = "ERROR"
 
-    avatar = Avatar.objects.filter(user=request.user)
-
-    if len(avatar) > 0:
-        img = avatar[0].imagen.url
-
+    if request.user.username:
+    
+            avatar = Avatar.objects.filter(user=request.user)
+            usuario = request.user
+            if len(avatar) > 0:
+            
+                img = avatar[0].imagen.url
+            else:
+            
+                img = None
     else:
+    
         img = None
+        usuario = None
 
     if data:
         try:
@@ -129,7 +136,7 @@ class PeliculasListView(ListView):
 
     model = Peliculas, Avatar
     queryset = Peliculas.objects.all()
-    paginate_by = 9 
+    paginate_by = 3 
     fields= "__all__"
 
     def get_context_data(self, *args, **kwargs ):
@@ -208,13 +215,24 @@ class PeliculaDetailView(DetailView):
     def get_context_data(self, *args, **kwargs ):
         pk = self.kwargs.get('pk')
 
-        avatar = Avatar.objects.filter(user=self.request.user)
+        if self.request.user.username:
+        
+            avatar = Avatar.objects.filter(user=self.request.user)
 
-        if len(avatar) > 0:
-            img = avatar[0].imagen.url
+            usuario = self.request.user
+
+            if len(avatar) > 0:
+                
+                img = avatar[0].imagen.url
+
+            else:
+                
+                img = None
 
         else:
+        
             img = None
+            usuario = None
 
         context = super(PeliculaDetailView, self).get_context_data(**kwargs)
         context = super(PeliculaDetailView, self).get_context_data(**kwargs)
@@ -328,3 +346,27 @@ class AddDislike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
     login_url = reverse_lazy('AppUsers:Login')
+
+def aviso(request):
+    
+    if request.user.username:
+
+        avatar = Avatar.objects.filter(user=request.user)
+
+        usuario = request.user
+
+        if len(avatar) > 0:
+
+            img = avatar[0].imagen.url
+
+        else:
+
+            img = None
+
+    else:
+
+        img = None
+
+        usuario = None
+
+    return render(request, 'AppBlog/aviso.html', {'user': usuario, 'img':img})
