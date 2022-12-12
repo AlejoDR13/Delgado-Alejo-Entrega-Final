@@ -91,11 +91,12 @@ Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog 馃
 El proyecto consta de dos aplicaciones, una dedicada a la estructura general del Blog, es decir; el inicio, mostrar los posts en una galeria, crear posts, sistema de likes, comentarios, etc. Y la otra aplicaci贸n consiste en administrar el registro, inicio de sesi贸n, informaci贸n de los usuarios en general. 
 
 Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su correspondiente informaci贸n mediante DBeaver.
-### Diagrama Entidad Relacion
+### Diagrama ER
 
 <img src="/DB.png">
 
-
 ### Aplicaci贸n del Blog (AppBlog)
+
+
 
 ### Aplicaci贸n de Usuarios (AppUsers) 
