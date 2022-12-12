@@ -97,28 +97,54 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su c
 
 ### Aplicación del Blog (AppBlog)
 
-### 📊 Modelos
+#### 📊 Modelos
 
-🔑 Peliculas
+####🔑 Peliculas
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
 |    usuario_post     |   ForeignField   |
-|   autor   |   CharField   
-|     email   |   EmailField   
-|   fecha   |  DateField  
-|   titulo    |   CharField   
-|   genero    |   CharField   
-|   direccion    |   CharField   
-|   estreno    |   DateTimeField   
-|   duracion_en_min    |   IntegerField   
-|   Primer_cuerpo    |   TextField   
-|   Segundo_cuerpo    |   TextField   
-|   Primer_imagen    |   ImageField   
-|   Segunda_imagen    |   ImageField   
+|   autor   |   CharField   |
+|     email   |   EmailField   |
+|   fecha   |  DateField  |
+|   titulo    |   CharField   |
+|   genero    |   CharField   |
+|   direccion    |   CharField   |
+|   estreno    |   DateTimeField   |
+|   duracion_en_min    |   IntegerField   |
+|   Primer_cuerpo    |   TextField   |
+|   Segundo_cuerpo    |   TextField   |
+|   Primer_imagen    |   ImageField   |
+|   Segunda_imagen    |   ImageField   |
 |   likes    |   ManyToManyField   | 
 |   dislikes    |   ManyToManyField   |  
 
+####🔑 Comment
 
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    usuario     |   ForeignField   |
+|   comentario   |   TextField   |
+|     fecha   |   DateTimeField   |
+|   post   |  CharField  |
 
 ### Aplicación de Usuarios (AppUsers) 
+
+#### 📊 Modelos
+
+####🔑 Avatar
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    user    |   ForeignField   |
+|   imagen   |   ImageField   |
+
+####🔑 UserAbout
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    user     |   ForeignField   |
+|   bio   |   TextField   |
+|     instagram   |   URLField   |
+|     facebook   |   URLField   |
+|     twitter   |   URLField   |
