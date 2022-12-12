@@ -4,6 +4,8 @@ PeliBlog consiste en un Blog de Peliculas donde los usuarios pueden postear opin
 
 Todos los usuarios tienen la posibilidad de likear, o dislikear los posts, de crear un post, de comentarlo y de alterar su información de perfil como la desee. A diferencia de un administrador, que el mismo tiene la posibilidad de editar cualquier post independientemente sea o no de su pertenencia, de eliminarlos, y contar con una opción del panel de administrador que posee django.  
 
+En resumen, el proyecto consiste en la implementación de Django/Python para crear un Blog con funcionalidades que deben cumplir los requisitos que se plantean en las consignas asignadas para el proyecto final segun CorderHouse. 
+
 ![Logo](https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4)
 
 ## 👨 Autor
@@ -20,6 +22,57 @@ Todos los usuarios tienen la posibilidad de likear, o dislikear los posts, de cr
 
 ## 🎞 Demo
 Enlace del video demostrativo, donde se puede observar en menos de 10min todas las funcionalidades con las que cuenta el Blog:
+[Demo](https://youtu.be/9diSZ3uwdcQ)
 
-- [Demo](https://drive.google.com/file/d/1haPMJQ1_SbgrONiLamfCrtLroh_N5fG0/view?usp=sharing)
+## Techs
 
+🛠️ Python (Version 3.7.0)
+
+🛠️ Django (Version 3.2.16)
+
+🛠️ HTML
+
+🛠️ CSS
+
+## Instalacion git clone
+
+Para acceder al proyecto clonándolo, deberás ejecutar en consola: 
+```sh
+git clone https://github.com/AlejoDR13/Delgado-Alejo-Entrega-Final.git
+```
+
+## Instalación y ejecución del proyecto
+
+En primer lugar nos posicionamos en el directorio donde hemos almacenado el proyecto, e instalamos nuestro entorno virtual
+```sh
+C:\Users\...\>cd \Proyecto
+
+pip install virtualenv
+```
+Le asignamos un nombre a nuestro entorno
+
+```sh
+C:\Users\...\Proyecto> virtualenv env
+```
+
+Y luego lo activamos a nuestro entorno local
+
+```sh
+C:\Users\...\Proyecto>env\Scripts\activate
+
+(env) C:\Users\...\Proyecto>
+```
+Posteriormente, nos posicionamos en el directorio correspondiente en el que se encuentra el proyecto
+
+```sh
+(env) C:\Users\...\Proyecto> cd ProyFinal
+
+(env) C:\Users\...\Proyecto\ProyFinal>
+```
+
+Llegado a este punto y considerando que se ha instalado django, para poder visualizar el Blog basta con utilizar el siguiente comando
+
+```sh
+(env) C:\Users\...\Proyecto\ProyFinal> py manage.py runserver
+```
+ 
