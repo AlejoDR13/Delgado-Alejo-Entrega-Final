@@ -116,6 +116,7 @@ class PeliculaCreateView(LoginRequiredMixin, CreateView):
         context = super(PeliculaCreateView, self).get_context_data(**kwargs)
         context['img']=img
         return context   
+        
 class PeliculasListView(ListView):
 
     template_name = "AppBlog/templates/AppBlog/peliculaslistar.html"
@@ -127,16 +128,28 @@ class PeliculasListView(ListView):
 
     def get_context_data(self, *args, **kwargs ):
 
-        avatar = Avatar.objects.filter(user=self.request.user)
+        if self.request.user.username:
+        
+                avatar = Avatar.objects.filter(user=self.request.user)
 
-        if len(avatar) > 0:
-            img = avatar[0].imagen.url
+                usuario = self.request.user
+
+                if len(avatar) > 0:
+                
+                    img = avatar[0].imagen.url
+
+                else:
+                
+                    img = None
 
         else:
+        
             img = None
+            usuario = None
 
         context = super(PeliculasListView, self).get_context_data(**kwargs)
         context['img']=img
+        context['usuario']=usuario
         return context
     
 @login_required(login_url='AppUsers:Login')
@@ -188,11 +201,6 @@ class PeliculaDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs ):
         pk = self.kwargs.get('pk')
-        context = super(PeliculaDetailView, self).get_context_data(**kwargs)
-        context['comentarios']=Comment.objects.filter(post=pk)
-        return context
-
-    def get_context_data(self, *args, **kwargs ):
 
         avatar = Avatar.objects.filter(user=self.request.user)
 
@@ -203,8 +211,12 @@ class PeliculaDetailView(DetailView):
             img = None
 
         context = super(PeliculaDetailView, self).get_context_data(**kwargs)
+        context = super(PeliculaDetailView, self).get_context_data(**kwargs)
+        context['comentarios']=Comment.objects.filter(post=pk)
         context['img']=img
-        return context
+
+        return context   
+
 
 class PeliculaUpdateView(UpdateView):
     model = Peliculas

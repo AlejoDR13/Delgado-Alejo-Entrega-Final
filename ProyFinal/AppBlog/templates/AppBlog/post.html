@@ -70,11 +70,7 @@
     {% block ContenidoBody %}
                             <!-- Likes/Dislikes-->
                             <div class="card" style="width: 18rem;">
-                                <div class="card-header">¡Califica el post!
-
-                                </div>
-                                <p></p>
-                                <div class="card-text">
+                                <div class="card-header">¡Califica el post!</div>
                                     <ul class="list-unstyled mb-0">
                                         <div id="wrapper">
                                             <!-- POST REACT -->
@@ -103,7 +99,7 @@
                                                   </div>
                                               
                                                   <div class="text-gray-500 dark:text-dark-txt">
-                                                  <!-- Comentms????-->
+                                                  
                                                   </div>
                                                 </div>
                                               </div>
@@ -130,8 +126,12 @@
                                                                 <p class="text-sm font-semibold">Dislike</p>
                                                             </button>
                                                         </form>
+                                                    </div>
+                                                </div>
+                                            </dic>
                                             <!-- END POST REACT -->
                                             </div>
+                                        </div>
                                     </ul>
                                 </div>
                             </div>
@@ -140,34 +140,34 @@
                             <!-- CRUDS y COMENTS-->
                             <a class="btn btn-primary" href="{% url 'AppBlog:DejarComentario' peliculas.pk %}">¡Deja tu comentario!</a>
     
-                                <p></p>
+                            <p></p>
                             </article>
                     </div>
                 </div>
             </div>
 
     <!-- COMENTARIOS PUBLICADOS-->
-    {% for comment in comentarios %}
-    
+
+    {% for i in comentarios %}
     <section class="mb-5">
         <div class="card bg-light">
             <div class="card-body">
-                <!-- Comment with nested comments-->
                 <div class="d-flex mb-4">
                     <div class="ms-4">
-                        <div class="text-muted fst-italic mb-2">Usuario: <a href="{% url 'AppUsers:OpenProfile' peliculas.usuario_post %}">{{comment.usuario}} </a> | {{comment.fecha}}</div>
-
-                            <p1 class="text-muted fst-italic mb-3">{{comment.comentario}}</p1>
+                        <div class="text-muted fst-italic mb-2">Usuario: <a href="{% url 'AppUsers:OpenProfile' peliculas.usuario_post %}">{{i.usuario}} </a> | {{i.fecha}}
+                        </div>
+                            <p1 class="text-muted fst-italic mb-3">{{i.comentario}}</p1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     {% endfor %}
-    
+
     {% endblock %}
 
     {% block BotonVolver %}
+    <p></p>
     <a class="btn btn-primary" href="{% url 'AppBlog:ListaPelicula' %}">Volver</a>
     </div>
     </div>
