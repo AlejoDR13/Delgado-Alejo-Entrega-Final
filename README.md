@@ -9,7 +9,7 @@ En resumen, el proyecto consiste en la implementación de Django/Python para cre
 ![Logo](https://avatars.githubusercontent.com/u/116843946?s=400&u=91949b295a9524968148fba6ea4d66edfec1a40a&v=4)
 
 ## 👨 Autor
-- Delgado Alejo
+###- Delgado Alejo
 ### 📱 Redes
 
 [![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alejo-alfredo-angel-delgado-129b291b5/)
@@ -96,6 +96,28 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su c
 <img src="/DB.png">
 
 ### Aplicación del Blog (AppBlog)
+
+### 📊 Modelos
+
+🔑 Peliculas
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    usuario_post     |   ForeignField   |
+|   autor   |   CharField   
+|     email   |   EmailField   
+|   fecha   |  DateField  
+|   titulo    |   CharField   
+|   genero    |   CharField   
+|   direccion    |   CharField   
+|   estreno    |   DateTimeField   
+|   duracion_en_min    |   IntegerField   
+|   Primer_cuerpo    |   TextField   
+|   Segundo_cuerpo    |   TextField   
+|   Primer_imagen    |   ImageField   
+|   Segunda_imagen    |   ImageField   
+|   likes    |   ManyToManyField   | 
+|   dislikes    |   ManyToManyField   |  
 
 
 
