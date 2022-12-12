@@ -77,8 +77,14 @@ def searchpost(request):
     data = request.GET.get('titulo', "ERROR")
     print(data)
     error = "ERROR"
-    img = None
 
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+        img = avatar[0].imagen.url
+
+    else:
+        img = None
 
     if data:
         try:
@@ -217,7 +223,6 @@ class PeliculaDetailView(DetailView):
 
         return context   
 
-
 class PeliculaUpdateView(UpdateView):
     model = Peliculas
     success_url = reverse_lazy('AppBlog:ListaPelicula')
@@ -225,6 +230,7 @@ class PeliculaUpdateView(UpdateView):
     'autor',
     'email',
     'titulo', 
+    'genero',
     'direccion', 
     'estreno', 
     'duracion_en_min',
