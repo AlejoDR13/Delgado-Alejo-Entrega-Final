@@ -93,7 +93,7 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y su correspondiente información mediante DBeaver.
 ### Diagrama Entidad Relacion
 
-<img src="/db.png">
+<img src="/DB.png">
 
 
 ### Aplicación del Blog (AppBlog)
