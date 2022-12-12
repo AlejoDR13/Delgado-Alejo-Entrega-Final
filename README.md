@@ -45,9 +45,9 @@ git clone https://github.com/AlejoDR13/Delgado-Alejo-Entrega-Final.git
 
 En primer lugar nos posicionamos en el directorio donde hemos almacenado el proyecto, e instalamos nuestro entorno virtual
 ```sh
-C:\Users\...\>cd \Proyecto
+C:\Users\...\> cd \Proyecto
 
-pip install virtualenv
+C:\Users\...\Proyecto> pip install virtualenv
 ```
 Le asignamos un nombre a nuestro entorno
 
@@ -204,7 +204,8 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda
 
 <img src="/DB.png">
 
-
+Se pueden observar las entidades relacionadas entre si, esto nos brinda una visión mas dinamica de como los datos interactuan entre si, como estan correlacionados, etc. 
 
 ### Agradecimientos
 
+En un principio agradecer a Daniel Ochoa, profesor que nos acompaño con paciencia brindandonos conocimientos, y ganas de enseñar de principio a fin en el transcurso del curso. Agradecimientos especialmente a mi tutor Pablo David Schvager por la disposición a ayudar siempre que se pudo. Y a CoderHouse por la posibilidad de aprender Python mediante un curso dinamico y en un plazo de tiempo relativamente corto. 
