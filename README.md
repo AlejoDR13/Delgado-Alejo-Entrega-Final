@@ -90,7 +90,7 @@ Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog �
 
 El proyecto consta de dos aplicaciones, una dedicada a la estructura general del Blog, es decir; el inicio, mostrar los posts en una galeria, crear posts, sistema de likes, comentarios, etc. Y la otra aplicación consiste en administrar el registro, inicio de sesión, información de los usuarios en general. 
 
-### Aplicación del Blog (AppBlog)
+### ⚙️ Aplicación del Blog (AppBlog)
 
 ### 📊 Modelos (models.py)
 
@@ -176,7 +176,7 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 >def aviso(request):... #### Renderiza una pagina que da aviso de que hay alguna funcionalidad no disponible en el Blog, junto con los datos de usuario y del avatar correspondiente.
 ```
 
-### Aplicación de Usuarios (AppUsers) 
+### ⚙️ Aplicación de Usuarios (AppUsers) 
 
 ### 📊 Modelos (models.py)
 
