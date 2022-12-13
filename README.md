@@ -199,19 +199,61 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 
 ### 📊 Formularios (forms.py)
 
-#### 🔑 CrearPelicula_form
+#### 🔑 UserRegister_form(UserCreationForm)
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
-|    user    |   ForeignField   |
-|   imagen   |   ImageField   |
+|    username    |   CharField   |
+|    email    |   EmailField   |
+|    first_name    |   CharField   |
+|    last_name    |   CharField   |
+|    password1    |   CharField   |
+|    password2    |   CharField   |
 
-#### 🔑 LeaveComment_form
+En este formulario, en los campos de username y email, se utilizo una función en especial para realizar una validación de datos ya existentes. Es decir que los usernames ni los emails en el Blogs se pueden repetir, dicha funciones son:
+
+```sh
+def clean_username(self):
+    username = self.cleaned_data.get('username')
+    if User.objects.filter(username=username).exists():
+        raise forms.ValidationError(u"Username existente, prueba con otro")
+    return username
+        
+def clean_email(self):
+    email = self.cleaned_data.get('email')
+    if User.objects.filter(email=email).exists():
+        raise forms.ValidationError(u"Email existente, prueba con otro")
+    return email
+```
+
+
+#### 🔑 UserEdit_form(UserCreationForm)
 
 |    Campo      |   Tipo        |
 | ------------- | ------------- |
-|    user    |   ForeignField   |
-|   imagen   |   ImageField   |
+|    username    |   CharField   |
+|    email    |   EmailField   |
+|    first_name    |   CharField   |
+|    last_name    |   CharField   |
+|    password1    |   CharField   |
+|    password2    |   CharField   |
+
+Tambien en este formulario se realiza la validación de datos ya existentes tanto en usernames como en emails.
+
+#### 🔑 AboutUser_form(forms.Form)
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    bio    |   CharField   |
+|    instagram    |   CharField  |
+|    facebook    |   CharField   |
+|    twitter    |   CharField   |
+
+#### 🔑 Avatar_form(forms.Form)
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    img    |   ImageField   |
 
 ### 📊 Vistas (views.py)
 
@@ -234,9 +276,9 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 >def open_user_profile(request, usuario):... #### Permite a alguien que no es usuario y a los usuarios tambien, poder visualizar el perfil de otra cuenta que este disponible en el Blog. Para estas dos ultimas funciones se hizo uso de un formulario llamado 'AboutUser_form' que nos permite solicitar la información sobre el usuario correspondiente.
 ```
 
-Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda la información que nos brinda django con respecto a las tablas de usuarios, administradores, persmisos, etc., mediante DBeaver.
-
 ## Diagrama ER
+
+Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda la información que nos brinda django con respecto a las tablas de usuarios, administradores, persmisos, etc., mediante DBeaver.
 
 <img src="/DB.png">
 
