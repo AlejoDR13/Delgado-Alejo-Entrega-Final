@@ -92,7 +92,7 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 
 ### Aplicación del Blog (AppBlog)
 
-### 📊 Modelos
+### 📊 Modelos (models.py)
 
 #### 🔑 Peliculas
 
@@ -123,8 +123,29 @@ El proyecto consta de dos aplicaciones, una dedicada a la estructura general del
 |     fecha   |   DateTimeField   |
 |   post   |  CharField  |
 
+### 📊 Formularios (forms.py)
 
-### 📊 Vistas
+#### 🔑 CrearPelicula_form
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    autor    |   CharField   |
+|   titulo   |   CharField   |
+|   genero   |   CharField  |
+|   direccion   |    CharField   |
+|   duracion_en_min   |   IntegerField   |
+|   Primer_imagen   |   ImageField   |
+|   Segunda_imagen   |   ImageField   |
+
+#### 🔑 LeaveComment_form
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    usuario    |   CharField   |
+|    comentario   |   CharField   |
+|    post   |   CharField   |
+
+### 📊 Vistas (views.py)
 
 Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio conveniente. Las mismas se resumen junto con la función que realizan acontinuación:
 
@@ -157,7 +178,7 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 
 ### Aplicación de Usuarios (AppUsers) 
 
-### 📊 Modelos
+### 📊 Modelos (models.py)
 
 #### 🔑 Avatar
 
@@ -176,7 +197,23 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 |     facebook   |   URLField   |
 |     twitter   |   URLField   |
 
-### 📊 Vistas
+### 📊 Formularios (forms.py)
+
+#### 🔑 CrearPelicula_form
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    user    |   ForeignField   |
+|   imagen   |   ImageField   |
+
+#### 🔑 LeaveComment_form
+
+|    Campo      |   Tipo        |
+| ------------- | ------------- |
+|    user    |   ForeignField   |
+|   imagen   |   ImageField   |
+
+### 📊 Vistas (views.py)
 
 Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno, pero en el caso de la Aplicacion de Usuarios, se implemento solamente Vistas Basadas en Funciones. Las mismas se resumen junto con la función que realizan acontinuación:
 
@@ -197,10 +234,9 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 >def open_user_profile(request, usuario):... #### Permite a alguien que no es usuario y a los usuarios tambien, poder visualizar el perfil de otra cuenta que este disponible en el Blog. Para estas dos ultimas funciones se hizo uso de un formulario llamado 'AboutUser_form' que nos permite solicitar la información sobre el usuario correspondiente.
 ```
 
-
 Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda la información que nos brinda django con respecto a las tablas de usuarios, administradores, persmisos, etc., mediante DBeaver.
 
-### Diagrama ER
+## Diagrama ER
 
 <img src="/DB.png">
 
