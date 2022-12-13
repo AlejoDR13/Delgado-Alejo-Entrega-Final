@@ -181,20 +181,20 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones según se vio oportuno, pero en el caso de la Aplicacion de Usuarios, se implemento solamente Vistas Basadas en Funciones. Las mismas se resumen junto con la función que realizan acontinuación:
 
 ```sh
-> def login_request(request):...
+> def login_request(request):... #### Encargado del inicio de sesion se hace uso del formulario que brinda Django 'AuthenticationForm', siendo los datos correctos redirecciona al inicio, sino muestra el correspondiente error
 
->def register_request(request):
-
-@login_required
->def edituser_request(request):...
+>def register_request(request):... #### Haciendo uso formulario creado en forms.py con sus respectivas modificaciones en las que consiste realizar una validación de usuarios ya existentes, no permitiendo crear una nueva cuenta si ya existe un usarname o email en uso en el blog. El formulario modificado en cuestión es 'UserCreationForm'.
 
 @login_required
->def add_avatar(request,):...
+>def edituser_request(request):... #### En primer lugar exije un inicio de sesión ya que solo podran modificar la información de usuario solo quienes esten ya registrados, luego validando la información de avatar correspondiente y un metodo de solicitud de posteo, se llama y hace uso de los formularios UserEdit_form y AboutUser_form para modificar la información de usuario. 
 
 @login_required
->def open_profile(request):
+>def add_avatar(request,):... #### Similar a lo anterior, ya que requiere de una cuenta para poder ser ejecutado, pero en este caso se hace uso del formulario Avatar_form para agregar una imagen Avatar. 
 
->def open_user_profile(request, usuario):
+@login_required
+>def open_profile(request):... #### Permite al usuario poder visualizar su perfil personal, donde podra encontrar toda su información correspondiente y la posibilidad de modificarla tambien. 
+
+>def open_user_profile(request, usuario):... #### Permite a alguien que no es usuario y a los usuarios tambien, poder visualizar el perfil de otra cuenta que este disponible en el Blog. Para estas dos ultimas funciones se hizo uso de un formulario llamado 'AboutUser_form' que nos permite solicitar la información sobre el usuario correspondiente.
 ```
 
 
