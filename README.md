@@ -1,5 +1,5 @@
-# PeliBlog - Entrega Final (Coderhouse)
-## Descripción 
+# 🎬 PeliBlog 📽️ - Entrega Final 🚀 (Coderhouse)
+## 📃 Descripción 
 PeliBlog consiste en un Blog de Peliculas donde los usuarios pueden postear opiniones, comentarios, reseñas sobre lo que deseen dando la información correspondiente de la pelicula de la cual habla su posteo. Dicha web tiene administradores, perfiles de usuarios donde se puede visualizar la informacion personal junto con su correspondiente avatar, para poder reaccionar o interactuar se debe estar logueado por lo tanto cuenta con registros para quien quiera aportar o interactuar, de no ser así, cualquier persona podrá simplemente visualizar el Blog como lo desee. 
 
 Todos los usuarios tienen la posibilidad de likear, o dislikear los posts, de crear un post, de comentarlo y de alterar su información de perfil como la desee. A diferencia de un administrador, que el mismo tiene la posibilidad de editar cualquier post independientemente sea o no de su pertenencia, de eliminarlos, y contar con una opción del panel de administrador que posee django.  
@@ -24,9 +24,9 @@ En resumen, el proyecto consiste en la implementación de Django/Python para cre
 Enlace del video demostrativo, donde se puede observar en menos de 10min todas las funcionalidades con las que cuenta el Blog:
 [Demo](https://youtu.be/9diSZ3uwdcQ)
 
-## Techs
+## 🧰 Techs
 
-🛠️ Python (Version 3.7.0)
+🐍  Python (Version 3.7.0)
 
 🛠️ Django (Version 3.2.16)
 
@@ -86,7 +86,7 @@ Quit the server with CTRL-BREAK.
 ```
 Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog 🚀
 
-## Backend 
+## 💻 Backend 
 
 El proyecto consta de dos aplicaciones, una dedicada a la estructura general del Blog, es decir; el inicio, mostrar los posts en una galeria, crear posts, sistema de likes, comentarios, etc. Y la otra aplicación consiste en administrar el registro, inicio de sesión, información de los usuarios en general. 
 
@@ -276,7 +276,7 @@ Se implemento el uso de Vistas Basadas en Clases y Vistas Basadas en Funciones s
 >def open_user_profile(request, usuario):... #### Permite a alguien que no es usuario y a los usuarios tambien, poder visualizar el perfil de otra cuenta que este disponible en el Blog. Para estas dos ultimas funciones se hizo uso de un formulario llamado 'AboutUser_form' que nos permite solicitar la información sobre el usuario correspondiente.
 ```
 
-## Diagrama ER
+##  📈 Diagrama ER
 
 Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda la información que nos brinda django con respecto a las tablas de usuarios, administradores, persmisos, etc., mediante DBeaver.
 
@@ -284,6 +284,6 @@ Se mostrara a grandes rasgos como estan conectadas estas dos aplicaciones y toda
 
 Se pueden observar las entidades relacionadas entre si, esto nos brinda una visión mas dinamica de como los datos interactuan entre si, como estan correlacionados, etc. 
 
-### Agradecimientos
+### 🤝 Agradecimientos
 
-En un principio agradecer a Daniel Ochoa, profesor que nos acompaño con paciencia brindandonos conocimientos, y ganas de enseñar de principio a fin en el transcurso del curso. Agradecimientos especialmente a mi tutor Pablo David Schvager por la disposición a ayudar siempre que se pudo. Y a CoderHouse por la posibilidad de aprender Python mediante un curso dinamico y en un plazo de tiempo relativamente corto. 
+En un principio agradecer a Daniel Ochoa, profesor que nos acompaño con paciencia brindandonos conocimientos, y ganas de enseñar de principio a fin en el transcurso del curso. Agradecimientos especialmente a mi tutor Pablo David Schvager por la disposición a ayudar siempre que se pudo. Y a CoderHouse por la posibilidad de aprender Python mediante un curso dinamico.
