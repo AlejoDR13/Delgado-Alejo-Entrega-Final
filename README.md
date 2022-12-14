@@ -86,7 +86,7 @@ Quit the server with CTRL-BREAK.
 ```
 Ingresando en http://127.0.0.1:8000/ nos redireccionara al inicio de PeliBlog 🚀
 
-## Backend 
+##  💻 Backend 
 
 El proyecto consta de dos aplicaciones, una dedicada a la estructura general del Blog, es decir; el inicio, mostrar los posts en una galeria, crear posts, sistema de likes, comentarios, etc. Y la otra aplicación consiste en administrar el registro, inicio de sesión, información de los usuarios en general. 
 
