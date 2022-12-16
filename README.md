@@ -286,4 +286,4 @@ Se pueden observar las entidades relacionadas entre si, esto nos brinda una visi
 
 ### 🤝 Agradecimientos
 
-En un principio agradecer a Daniel Ochoa, profesor que nos acompaño con paciencia brindandonos conocimientos, y ganas de enseñar de principio a fin en el transcurso del curso. Agradecimientos especialmente a mi tutor Pablo David Schvager por la disposición a ayudar siempre que se pudo. Y a CoderHouse por la posibilidad de aprender Python mediante un curso dinamico.
+En un principio agradecer a Daniel Ochoa, profesor que nos acompaño con paciencia brindandonos conocimientos, y ganas de aprender de principio a fin en el transcurso del curso. Agradecimientos especialmente a mi tutor Pablo David Schvager por la disposición a ayudar siempre que se pudo. Y a CoderHouse por la posibilidad de aprender Python mediante un curso dinamico.
